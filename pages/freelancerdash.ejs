@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DesiGigs Freelancer Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/lucide-static@latest/font/lucide.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --main-color: #6c5ce7;
+            --secondary-color: #a29bfe;
+            --lighter-color: #e0e0e7;
+            --light-color: #b0b0c0;
+            --dark-color: #52505e;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .bg-main {
+            background-color: var(--main-color);
+        }
+
+        .bg-secondary {
+            background-color: var(--secondary-color);
+        }
+
+        .text-lighter {
+            color: var(--lighter-color);
+        }
+
+        .text-light {
+            color: var(--light-color);
+        }
+
+        .text-dark {
+            color: var(--dark-color);
+        }
+
+        .hover\:bg-main:hover {
+            background-color: var(--main-color);
+        }
+
+        .hover\:bg-secondary:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .border-main {
+            border-color: var(--main-color);
+        }
+
+        .border-secondary {
+            border-color: var(--secondary-color);
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 text-dark flex flex-col min-h-screen">
+    <div class="flex flex-1 overflow-hidden">
+        <!-- Sidebar -->
+        <aside class="w-64 bg-gray-900 shadow-md hidden lg:block">
+            <div class="p-4 flex items-center">
+                <i class="icon icon-gpu text-4xl text-main mr-2"></i>
+                <h1 class="text-2xl font-bold text-lighter">DesiGigs</h1>
+            </div>
+            <nav class="mt-4">
+                <a href="#" class="block py-2 px-4 text-light hover:bg-main hover:text-lighter nav-link"
+                    data-target="dashboard">Dashboard</a>
+                <a href="#" class="block py-2 px-4 text-light hover:bg-main hover:text-lighter nav-link"
+                    data-target="profile">Profile</a>
+                <a href="#" class="block py-2 px-4 text-light hover:bg-main hover:text-lighter nav-link"
+                    data-target="search-projects">Search Projects</a>
+                <a href="#" class="block py-2 px-4 text-light hover:bg-main hover:text-lighter nav-link"
+                    data-target="my-services">My Services</a>
+                <a href="#" class="block py-2 px-4 text-light hover:bg-main hover:text-lighter nav-link"
+                    data-target="payments">Payments</a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="flex-1 flex flex-col overflow-hidden">
+            <!-- Header -->
+            <header class="bg-gray-900 shadow-sm">
+                <div class="flex items-center justify-between p-4">
+                    <div class="flex items-center">
+                        <button id="sidebar-toggle" class="mr-4 text-lighter lg:hidden">
+                            <i class="icon icon-menu"></i>
+                        </button>
+                        <i class="icon icon-gpu text-3xl text-main"></i>
+                    </div>
+                    <div class="relative">
+                        <button id="profile-menu-button" class="flex items-center focus:outline-none">
+                            <img id="header-profile-image" src="/placeholder.svg?height=32&width=32" alt="Profile"
+                                class="w-8 h-8 rounded-full">
+                        </button>
+                        <div id="profile-dropdown"
+                            class="absolute right-0 mt-2 w-48 bg-gray-800 rounded-md shadow-lg hidden">
+                            <a href="#"
+                                class="block px-4 py-2 text-sm text-light hover:bg-main hover:text-lighter">Switch to
+                                Client</a>
+                            <a href="#"
+                                class="block px-4 py-2 text-sm text-light hover:bg-main hover:text-lighter">Settings</a>
+                            <a href="#"
+                                class="block px-4 py-2 text-sm text-light hover:bg-main hover:text-lighter">Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100">
+                <div class="container mx-auto px-6 py-8">
+                    <!-- Dashboard -->
+                    <div id="dashboard" class="page-content">
+                        <h2 class="text-2xl font-semibold text-dark mb-4">Freelancer Dashboard</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
+                            <div class="bg-white rounded-lg shadow-md p-6">
+                                <h3 class="text-lg font-semibold mb-2 text-dark">Active Projects</h3>
+                                <p class="text-3xl font-bold text-main">3</p>
+                            </div>
+                            <div class="bg-white rounded-lg shadow-md p-6">
+                                <h3 class="text-lg font-semibold mb-2 text-dark">Completed Projects</h3>
+                                <p class="text-3xl font-bold text-secondary">12</p>
+                            </div>
+                            <div class="bg-white rounded-lg shadow-md p-6">
+                                <h3 class="text-lg font-semibold mb-2 text-dark">Total Earnings</h3>
+                                <p class="text-3xl font-bold text-main">$8,750</p>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                            <h3 class="text-lg font-semibold mb-4 text-dark">My Projects</h3>
+                            <div class="overflow-x-auto">
+                                <table class="min-w-full divide-y divide-gray-200">
+                                    <thead class="bg-gray-50">
+                                        <tr>
+                                            <th
+                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                Project</th>
+                                            <th
+                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                Client</th>
+                                            <th
+                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                Deadline</th>
+                                            <th
+                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="bg-white divide-y divide-gray-200">
+                                        <tr>
+                                            <td class="px-6 py-4 whitespace-nowrap">E-commerce Website</td>
+                                            <td class="px-6 py-4 whitespace-nowrap">John Doe</td>
+                                            <td class="px-6 py-4 whitespace-nowrap">2023-07-15</td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <span
+                                                    class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                                    In Progress
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="px-6 py-4 whitespace-nowrap">Mobile App UI Design</td>
+                                            <td class="px-6 py-4 whitespace-nowrap">Jane Smith</td>
+                                            <td class="px-6 py-4 whitespace-nowrap">2023-07-30</td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <span
+                                                    class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
+                                                    Pending
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-lg shadow-md p-6">
+                            <h3 class="text-lg font-semibold mb-4 text-dark">Applied Projects Status</h3>
+                            <div class="space-y-4">
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <h4 class="font-semibold">Web Development Project</h4>
+                                        <p class="text-sm text-gray-500">Applied on: 2023-06-20</p>
+                                    </div>
+                                    <span
+                                        class="px-2 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-800">
+                                        Under Review
+                                    </span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <h4 class="font-semibold">Logo Design</h4>
+                                        <p class="text-sm text-gray-500">Applied on: 2023-06-18</p>
+                                    </div>
+                                    <span class="px-2 py-1 text-xs font-semibold rounded-full bg-red-100 text-red-800">
+                                        Rejected
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Profile -->
+                    <div id="profile" class="page-content hidden">
+                        <div class="flex justify-between items-center mb-4">
+                            <h2 class="text-2xl font-semibold text-dark">Freelancer Profile</h2>
+                            <button id="edit-profile-btn"
+                                class="bg-main hover:bg-secondary text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                                Edit Profile
+                            </button>
+                        </div>
+                        <div class="bg-white rounded-lg shadow-md p-6">
+                            <div id="profile-view" class="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-full">
+                                <div class="w-full bg-white rounded-2xl shadow-2xl overflow-hidden transform transition-all hover:scale-105 m-4" style="width:1300px">
+                                    <div class="flex flex-col lg:flex-row">
+                                        <!-- Left Section (Profile Info) -->
+                                        <div class="w-full lg:w-1/4 bg-gradient-to-b from-indigo-600 to-purple-700 p-8 text-white border-r border-gray-200">
+                                            <div class="text-center">
+                                                <h2 class="text-3xl font-bold mb-2"><%= free.FirstName %> <%= free.LastName %></h2>
+                                                <p class="text-indigo-200 mb-6">Freelance Professional</p>
+                                            </div>
+                                            <div class="space-y-4">
+                                                <div class="flex items-center">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                                    </svg>
+                                                    <span class="text-sm"><a href="<%= free.email %>"><%= free.email %></a></span>
+                                                </div>
+                                                <div class="flex items-center">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                                                    </svg>
+                                                    <span class="text-sm"><%= free.phone %></span>
+                                                </div>
+                                                <div class="flex items-center">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+                                                    </svg>
+                                                    <span class="text-sm">ID: <%= free._id %></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                
+                                        <!-- Right Section (Details) -->
+                                        <div class="w-full lg:w-3/4 p-8" style="margin-left:80px">
+                                            <div class="mb-6">
+                                                <h3 class="text-2xl font-bold text-indigo-600 mb-3">About Me</h3>
+                                                <p class="text-gray-600"><%= free.aboutme %></p>
+                                            </div>
+                                            <div class="mb-6">
+                                                <h3 class="text-2xl font-bold text-indigo-600 mb-3">Skills</h3>
+                                                <div class="flex flex-wrap gap-2">
+                                                    <span class="px-3 py-1 bg-indigo-100 text-indigo-600 rounded-full text-sm">Web Development</span>
+                                                    <span class="px-3 py-1 bg-indigo-100 text-indigo-600 rounded-full text-sm">UI/UX Design</span>
+                                                    <span class="px-3 py-1 bg-indigo-100 text-indigo-600 rounded-full text-sm">Project Management</span>
+                                                    <span class="px-3 py-1 bg-indigo-100 text-indigo-600 rounded-full text-sm">Content Writing</span>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <h3 class="text-2xl font-bold text-indigo-600 mb-3">Experience</h3>
+                                                <p class="text-gray-600 mb-2">5+ years of freelance experience in web development and design.</p>
+                                                <p class="text-gray-600">Completed over 100 projects for clients worldwide, maintaining a 5-star rating.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- form -->
+                            <form id="profile-form" class="hidden" action="/freelancerDashboard/<%= free._id%>?_method=PUT" method="post">
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                                    <div>
+                                        <label class="block text-dark text-sm font-bold mb-2" for="first-name">
+                                            First Name
+                                        </label>
+                                        <input
+                                            class="shadow appearance-none border rounded w-full py-2 px-3 text-dark leading-tight focus:outline-none focus:ring-2 focus:ring-main"
+                                            id="first-name" type="text" placeholder="Enter your first name" value="<%= free.FirstName %>" name="Candidate[FirstName]">
+                                    </div>
+                                    <div>
+                                        <label class="block text-dark text-sm font-bold mb-2" for="last-name">
+                                            Last Name
+                                        </label>
+                                        <input
+                                            class="shadow appearance-none border rounded w-full py-2 px-3 text-dark leading-tight focus:outline-none focus:ring-2 focus:ring-main"
+                                            id="last-name" type="text" placeholder="Enter your last name" value="<%= free.LastName %>" name="Candidate[LastName]">
+                                    </div>
+                                </div>
+                                <div class="mb-4">
+                                    <label class="block text-dark text-sm font-bold mb-2" for="email">
+                                        Email
+                                    </label>
+                                    <input
+                                        class="shadow appearance-none border rounded w-full py-2 px-3 text-dark leading-tight focus:outline-none focus:ring-2 focus:ring-main"
+                                        id="email" type="email" placeholder="Enter your email" value="<%= free.email %>" name="Candidate[email]">
+                                </div>
+                                <div class="mb-4">
+                                    <label class="block text-dark text-sm font-bold mb-2" for="about-me">
+                                        About Me
+                                    </label>
+                                    <textarea
+                                        class="shadow appearance-none border rounded w-full py-2 px-3 text-dark leading-tight focus:outline-none focus:ring-2 focus:ring-main"
+                                        id="about-me" placeholder="Tell us about yourself" rows="4" name="Candidate[aboutme]"><%= free.aboutme %></textarea>
+                                </div>
+                                <div class="mb-4">
+                                    <label class="block text-dark text-sm font-bold mb-2" for="phone-number">
+                                        Phone Number
+                                    </label>
+                                    <input
+                                        class="shadow appearance-none border rounded w-full py-2 px-3 text-dark leading-tight focus:outline-none focus:ring-2 focus:ring-main"
+                                        id="phone-number" type="number" placeholder="Enter your phone number" value="<%= free.phone %>" name="Candidate[phone]">
+                                </div>
+                                <div class="mb-4">
+                                    <label class="block text-dark text-sm font-bold mb-2" for="id-number">
+                                        ID (Aadhar/PAN)
+                                    </label>
+                                    <input
+                                        class="shadow appearance-none border rounded w-full py-2 px-3 text-dark leading-tight focus:outline-none focus:ring-2 focus:ring-main"
+                                        id="id-number" type="text" placeholder="Enter your Aadhar or PAN number">
+                                </div>
+                                <div class="mb-4">
+                                    <label class="block text-dark text-sm font-bold mb-2" for="profile-photo">
+                                        Profile Photo
+                                    </label>
+                                    <div class="flex items-center space-x-4">
+                                        <div
+                                            class="w-24 h-24 bg-gray-200 rounded-full flex items-center justify-center overflow-hidden">
+                                            <img id="photo-preview" src="/placeholder.svg?height=96&width=96"
+                                                alt="Profile" class="w-full h-full object-cover">
+                                        </div>
+                                        <label for="photo-upload"
+                                            class="cursor-pointer bg-main hover:bg-secondary text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                                            <input id="photo-upload" type="file" accept="image/*" class="hidden">
+                                            Upload Photo
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="mb-4">
+                                    <label class="block text-dark text-sm font-bold mb-2" for="resume-upload">
+                                        Resume
+                                    </label>
+                                    <label for="resume-upload"
+                                        class="cursor-pointer bg-main hover:bg-secondary text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                                        <input id="resume-upload" type="file" accept=".pdf,.doc,.docx" class="hidden">
+                                        Upload Resume
+                                    </label>
+                                    <span id="resume-file-name" class="ml-2 text-sm text-gray-600"></span>
+                                </div>
+                                <div class="mb-4">
+                                    <label class="block text-dark text-sm font-bold mb-2" for="skills">
+                                        Skills
+                                    </label>
+                                    <div id="skills-container" class="flex flex-wrap gap-2 mb-2"></div>
+                                    <div class="flex space-x-2">
+                                        <input
+                                            class="shadow appearance-none border rounded flex-grow py-2 px-3 text-dark leading-tight focus:outline-none focus:ring-2 focus:ring-main"
+                                            id="skill-input" type="text" placeholder="Enter a skill">
+                                        <button type="button" id="add-skill"
+                                            class="bg-main hover:bg-secondary text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                                            Add Skill
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="mb-4">
+                                    <label class="block text-dark text-sm font-bold mb-2" for="experience">
+                                        Experience (if any)
+                                    </label>
+                                    <textarea
+                                        class="shadow appearance-none border rounded w-full py-2 px-3 text-dark leading-tight focus:outline-none focus:ring-2 focus:ring-main"
+                                        id="experience" placeholder="Describe your work experience" rows="4" name="Candidate[workexp.desc]"><%= free.workexp.desc %></textarea>
+                                </div>
+                                <div class="mb-4">
+                                    <label class="block text-dark text-sm font-bold mb-2" for="previous-work">
+                                        Previous Work (optional)
+                                    </label>
+                                    <textarea
+                                        class="shadow appearance-none border rounded w-full py-2 px-3 text-dark leading-tight focus:outline-none focus:ring-2 focus:ring-main"
+                                        id="previous-work"
+                                        placeholder="Describe your previous work or provide portfolio links"
+                                        rows="4"></textarea>
+                                </div>
+                                <button
+                                    class="bg-main hover:bg-secondary text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full">
+                                    Save Profile
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Search Projects -->
+                    <div id="search-projects" class="page-content hidden">
+                        <h2 class="text-2xl font-semibold text-dark mb-4">Search Projects</h2>
+                        <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                            <div class="mb-4">
+                                <input type="text" id="project-search" placeholder="Search projects..."
+                                    class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-main">
+                            </div>
+                            <div class="flex flex-wrap gap-4 mb-4">
+                                <select id="project-sort"
+                                    class="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-main">
+                                    <option value="newest">Sort by: Newest</option>
+                                    <option value="budget-high-low">Sort by: Budget (High to Low)</option>
+                                    <option value="budget-low-high">Sort by: Budget (Low to High)</option>
+                                    <option value="deadline">Sort by: Deadline</option>
+                                </select>
+                                <select id="project-category"
+                                    class="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-main">
+                                    <option value="all">Filter by: All Categories</option>
+                                    <option value="web-development">Web Development</option>
+                                    <option value="graphic-design">Graphic Design</option>
+                                    <option value="Digital Marketing">Digital Marketing</option>
+                                    <option value="App Development">App Development</option>
+                                    <option value="Finance and Accounting">Finance and Accounting</option>
+                                    <option value="Game Development">Game Development</option>
+                                    <option value="Video and Audio Production">Video and Audio Production</option>
+                                    <option value="content-writing">Content Writing</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div id="project-list" class="space-y-6">
+                            <!-- Projects will be dynamically added here -->
+                        </div>
+                    </div>
+
+                    <!-- My Services -->
+                    <div id="my-services" class="page-content hidden">
+                        <h2 class="text-2xl font-semibold text-dark mb-4">My Services</h2>
+                        <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                            <h3 class="text-lg font-semibold mb-4">Add a New Service</h3>
+                            <form id="service-form">
+                                <div class="mb-4">
+                                    <label class="block text-dark text-sm font-bold mb-2" for="service-title">
+                                        Service Title
+                                    </label>
+                                    <input
+                                        class="shadow appearance-none border rounded w-full py-2 px-3 text-dark leading-tight focus:outline-none focus:ring-2 focus:ring-main"
+                                        id="service-title" type="text" placeholder="Enter service title">
+                                </div>
+                                <div class="mb-4">
+                                    <label class="block text-dark text-sm font-bold mb-2" for="service-title">
+                                        Select Avenue
+                                    </label>
+                                    <select id="service-description"
+                                        class="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-main">
+                                        <option value="all">Filter by: All Categories</option>
+                                        <option value="web-development">Web Development</option>
+                                        <option value="graphic-design">Graphic Design</option>
+                                        <option value="Digital Marketing">Digital Marketing</option>
+                                        <option value="App Development">App Development</option>
+                                        <option value="Finance and Accounting">Finance and Accounting</option>
+                                        <option value="Game Development">Game Development</option>
+                                        <option value="Video and Audio Production">Video and Audio Production</option>
+                                        <option value="content-writing">Content Writing</option>
+                                    </select>
+                                </div>
+                                <div class="mb-4">
+                                    <label class="block text-dark text-sm font-bold mb-2" for="service-description">
+                                        Service Description
+                                    </label>
+                                    <textarea
+                                        class="shadow appearance-none border rounded w-full py-2 px-3 text-dark leading-tight focus:outline-none focus:ring-2 focus:ring-main"
+                                        id="service-detail" placeholder="Describe your service"></textarea>
+                                </div>
+                                <div class="mb-4">
+                                    <label class="block text-dark text-sm font-bold mb-2" for="service-rate">
+                                        Hourly Rate ($)
+                                    </label>
+                                    <input
+                                        class="shadow appearance-none border rounded w-full py-2 px-3 text-dark leading-tight focus:outline-none focus:ring-2 focus:ring-main"
+                                        id="service-rate" type="number" placeholder="Enter your hourly rate">
+                                </div>
+                                <button
+                                    class="bg-main hover:bg-secondary text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                                    type="submit">
+                                    Add Service
+                                </button>
+                            </form>
+                        </div>
+                        <div class="space-y-6" id="services-list">
+                            <!-- Services will be dynamically added here -->
+                        </div>
+                    </div>
+
+                    <!-- Payments -->
+                    <div id="payments" class="page-content hidden">
+                        <h2 class="text-2xl font-semibold text-dark mb-4">Payments</h2>
+                        <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                            <h3 class="text-lg font-semibold mb-4">Payment Overview</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                <div class="bg-gray-100 p-4 rounded-lg">
+                                    <h4 class="font-semibold mb-2">Total Earnings</h4>
+                                    <p class="text-2xl font-bold text-main">$8,750</p>
+                                </div>
+                                <div class="bg-gray-100 p-4 rounded-lg">
+                                    <h4 class="font-semibold mb-2">Pending Payments</h4>
+                                    <p class="text-2xl font-bold text-yellow-500">$1,500</p>
+                                </div>
+                                <div class="bg-gray-100 p-4 rounded-lg">
+                                    <h4 class="font-semibold mb-2">Available for Withdrawal</h4>
+                                    <p class="text-2xl font-bold text-green-500">$3,250</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-lg shadow-md p-6">
+                            <h3 class="text-lg font-semibold mb-4">Recent Transactions</h3>
+                            <div class="overflow-x-auto">
+                                <table class="min-w-full divide-y divide-gray-200">
+                                    <thead class="bg-gray-50">
+                                        <tr>
+                                            <th
+                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                Date</th>
+                                            <th
+                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                Description</th>
+                                            <th
+                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                Amount</th>
+                                            <th
+                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                Status</th>
+                                            <th
+                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="bg-white divide-y divide-gray-200">
+                                        <tr>
+                                            <td class="px-6 py-4 whitespace-nowrap">2023-06-15</td>
+                                            <td class="px-6 py-4 whitespace-nowrap">Payment for E-commerce Project</td>
+                                            <td class="px-6 py-4 whitespace-nowrap">$1,500.00</td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <span
+                                                    class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                                    Paid
+                                                </span>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <button class="text-main hover:text-secondary"
+                                                    onclick="showTransactionDetails('2023-06-15')">View Details</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="px-6 py-4 whitespace-nowrap">2023-06-10</td>
+                                            <td class="px-6 py-4 whitespace-nowrap">Payment for Logo Design</td>
+                                            <td class="px-6 py-4 whitespace-nowrap">$500.00</td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <span
+                                                    class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
+                                                    Pending
+                                                </span>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <button class="text-main hover:text-secondary"
+                                                    onclick="showTransactionDetails('2023-06-10')">View Details</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- JS FUNCTIONALY ADDED HERE (Change accordingly GPT kiya hai) -->
+    <script>
+        // Navigation
+        const navLinks = document.querySelectorAll('.nav-link');
+        const pageContents = document.querySelectorAll('.page-content');
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('data-target');
+                pageContents.forEach(content => {
+                    content.classList.add('hidden');
+                });
+                document.getElementById(targetId).classList.remove('hidden');
+            });
+        });
+
+        // Profile dropdown
+        const profileMenuButton = document.getElementById('profile-menu-button');
+        const profileDropdown = document.getElementById('profile-dropdown');
+
+        profileMenuButton.addEventListener('click', () => {
+            profileDropdown.classList.toggle('hidden');
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!profileMenuButton.contains(e.target) && !profileDropdown.contains(e.target)) {
+                profileDropdown.classList.add('hidden');
+            }
+        });
+
+        // Sidebar toggle for mobile
+        const sidebarToggle = document.getElementById('sidebar-toggle');
+        const sidebar = document.querySelector('aside');
+
+        sidebarToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('hidden');
+        });
+        const editProfileBtn = document.getElementById('edit-profile-btn');
+        // Profile functionality
+//         
+        const profileView = document.getElementById('profile-view');
+        const profileForm = document.getElementById('profile-form');
+        const photoUpload = document.getElementById('photo-upload');
+        const photoPreview = document.getElementById('photo-preview');
+        const resumeUpload = document.getElementById('resume-upload');
+        const resumeFileName = document.getElementById('resume-file-name');
+        const skillInput = document.getElementById('skill-input');
+        const addSkillButton = document.getElementById('add-skill');
+        const skillsContainer = document.getElementById('skills-container');
+
+        let isEditing = false;
+//         let profileData = {
+//             firstName: 'John',
+//             lastName: 'Doe',
+//             email: 'john.doe@example.com',
+//             aboutMe: 'Experienced freelance developer specializing in web applications.',
+//             phoneNumber: '+1 (555) 123-4567',
+//             idNumber: 'ABCD1234XYZ',
+//             skills: ['JavaScript', 'React', 'Node.js'],
+//             experience: '5 years of experience in full-stack development.',
+//             previousWork: 'Developed e-commerce platforms and content management systems.'
+//         };
+
+//         function updateProfileView() {
+//             profileView.innerHTML = `
+//                     <div class="w-full bg-white rounded-2xl shadow-2xl overflow-hidden transform transition-all hover:scale-105 m-4" style="width:90em">
+//     <div class="flex flex-col lg:flex-row">
+//         <!-- Left Section (Profile Info) -->
+//         <div class="w-full lg:w-1/4 bg-gradient-to-b from-indigo-600 to-purple-700 p-8 text-white border-r border-gray-200">
+//             <div class="text-center">
+//                 <h2 class="text-3xl font-bold mb-2">John Doe</h2>
+//                 <p class="text-indigo-200 mb-6">Freelance Professional</p>
+//             </div>
+//             <div class="space-y-4">
+//                 <div class="flex items-center">
+//                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+//                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+//                     </svg>
+//                     <span class="text-sm">john.doe@example.com</span>
+//                 </div>
+//                 <div class="flex items-center">
+//                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+//                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+//                     </svg>
+//                     <span class="text-sm">+1 234 567 890</span>
+//                 </div>
+//                 <div class="flex items-center">
+//                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+//                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+//                     </svg>
+//                     <span class="text-sm">ID: 1234567890</span>
+//                 </div>
+//             </div>
+//         </div>
+
+//         <!-- Right Section (Details) -->
+//         <div class="w-full lg:w-3/4 p-8" style="margin-left:80px">
+//             <div class="mb-6">
+//                 <h3 class="text-2xl font-bold text-indigo-600 mb-3">About Me</h3>
+//                 <p class="text-gray-600">Passionate freelance professional with a keen eye for detail and a commitment to delivering high-quality work. Experienced in various projects and always eager to take on new challenges.</p>
+//             </div>
+//             <div class="mb-6">
+//                 <h3 class="text-2xl font-bold text-indigo-600 mb-3">Skills</h3>
+//                 <div class="flex flex-wrap gap-2">
+//                     <span class="px-3 py-1 bg-indigo-100 text-indigo-600 rounded-full text-sm">Web Development</span>
+//                     <span class="px-3 py-1 bg-indigo-100 text-indigo-600 rounded-full text-sm">UI/UX Design</span>
+//                     <span class="px-3 py-1 bg-indigo-100 text-indigo-600 rounded-full text-sm">Project Management</span>
+//                     <span class="px-3 py-1 bg-indigo-100 text-indigo-600 rounded-full text-sm">Content Writing</span>
+//                 </div>
+//             </div>
+//             <div>
+//                 <h3 class="text-2xl font-bold text-indigo-600 mb-3">Experience</h3>
+//                 <p class="text-gray-600 mb-2">5+ years of freelance experience in web development and design.</p>
+//                 <p class="text-gray-600">Completed over 100 projects for clients worldwide, maintaining a 5-star rating.</p>
+//             </div>
+//         </div>
+//     </div>
+// </div>
+
+
+//             `;
+//         }
+
+        function toggleEditMode() {
+            isEditing = !isEditing;
+            if (isEditing) {
+                profileView.classList.add('hidden');
+                profileForm.classList.remove('hidden');
+                editProfileBtn.textContent = 'Cancel';
+                populateForm();
+            } else {
+                profileView.classList.remove('hidden');
+                profileForm.classList.add('hidden');
+                editProfileBtn.textContent = 'Edit Profile';
+            }
+        }
+
+        function populateForm() {
+            document.getElementById('first-name').value = profileData.firstName;
+            document.getElementById('last-name').value = profileData.lastName;
+            document.getElementById('email').value = profileData.email;
+            document.getElementById('about-me').value = profileData.aboutMe;
+            document.getElementById('phone-number').value = profileData.phoneNumber;
+            document.getElementById('id-number').value = profileData.idNumber;
+            document.getElementById('experience').value = profileData.experience;
+            document.getElementById('previous-work').value = profileData.previousWork;
+
+            skillsContainer.innerHTML = '';
+            profileData.skills.forEach(skill => addSkillToContainer(skill));
+        }
+
+        function addSkillToContainer(skill) {
+            const skillElement = document.createElement('span');
+            skillElement.className = 'bg-gray-200 px-2 py-1 rounded-full text-sm';
+            skillElement.textContent = skill;
+            skillsContainer.appendChild(skillElement);
+        }
+
+        editProfileBtn.addEventListener('click', toggleEditMode);
+
+        photoUpload.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    photoPreview.src = e.target.result;
+                    document.getElementById('header-profile-image').src = e.target.result;
+                    document.getElementById('propic').src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        resumeUpload.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                resumeFileName.textContent = file.name;
+            }
+        });
+
+        addSkillButton.addEventListener('click', () => {
+            const skill = skillInput.value.trim();
+            if (skill && !profileData.skills.includes(skill)) {
+                profileData.skills.push(skill);
+                addSkillToContainer(skill);
+                skillInput.value = '';
+            }
+        });
+
+        // profileForm.addEventListener('submit', (e) => {
+        //     e.preventDefault();
+        //     profileData = {
+        //         firstName: document.getElementById('first-name').value,
+        //         lastName: document.getElementById('last-name').value,
+        //         email: document.getElementById('email').value,
+        //         aboutMe: document.getElementById('about-me').value,
+        //         phoneNumber: document.getElementById('phone-number').value,
+        //         idNumber: document.getElementById('id-number').value,
+        //         skills: profileData.skills,
+        //         experience: document.getElementById('experience').value,
+        //         previousWork: document.getElementById('previous-work').value
+        //     };
+        //     toggleEditMode();
+        // });
+
+        // Initialize profile view
+        // updateProfileView();
+
+        // Search Projects functionality
+        const projectSearch = document.getElementById('project-search');
+        const projectSort = document.getElementById('project-sort');
+        const projectCategory = document.getElementById('project-category');
+        const projectList = document.getElementById('project-list');
+
+        let projects = [
+            { id: 1, title: 'E-commerce Website Development', description: 'Looking for an experienced developer to create a fully functional e-commerce website...', budget: 2500, deadline: '2023-08-15', category: 'web-development' },
+            { id: 2, title: 'Logo Design for Tech Startup', description: 'We need a creative designer to craft a modern and memorable logo for our tech startup...', budget: 750, deadline: '2023-07-30', category: 'graphic-design' },
+            { id: 3, title: 'Content Writing for Blog', description: 'Seeking a skilled content writer to create engaging blog posts on various tech topics...', budget: 500, deadline: '2023-08-05', category: 'content-writing' },
+            { id: 4, title: 'Mobile App UI Design', description: 'Looking for a UI designer to create intuitive and attractive interfaces for our mobile app...', budget: 1800, deadline: '2023-09-10', category: 'graphic-design' },
+            { id: 5, title: 'Backend API Development', description: 'Need a backend developer to create RESTful APIs for our web application...', budget: 3000, deadline: '2023-08-25', category: 'web-development' }
+        ];
+
+        function renderProjects(projectsToRender) {
+            projectList.innerHTML = projectsToRender.map(project => `
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-lg font-semibold mb-2">${project.title}</h3>
+                    <p class="text-gray-600 mb-4">${project.description}</p>
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <span class="text-sm font-semibold text-gray-500">Budget: $${project.budget}</span>
+                            <span class="text-sm font-semibold text-gray-500 ml-4">Deadline: ${project.deadline}</span>
+                        </div>
+                        <button class="bg-main hover:bg-secondary text-white font-bold py-2 px-4 rounded">
+                            View & Apply
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filterAndSortProjects() {
+            let filteredProjects = projects;
+
+            // Filter by search term
+            const searchTerm = projectSearch.value.toLowerCase();
+            if (searchTerm) {
+                filteredProjects = filteredProjects.filter(project =>
+                    project.title.toLowerCase().includes(searchTerm) ||
+                    project.description.toLowerCase().includes(searchTerm)
+                );
+            }
+
+            // Filter by category
+            const category = projectCategory.value;
+            if (category !== 'all') {
+                filteredProjects = filteredProjects.filter(project => project.category === category);
+            }
+
+            // Sort projects
+            const sortBy = projectSort.value;
+            filteredProjects.sort((a, b) => {
+                switch (sortBy) {
+                    case 'newest':
+                        return new Date(b.deadline) - new Date(a.deadline);
+                    case 'budget-high-low':
+                        return b.budget - a.budget;
+                    case 'budget-low-high':
+                        return a.budget - b.budget;
+                    case 'deadline':
+                        return new Date(a.deadline) - new Date(b.deadline);
+                    default:
+                        return 0;
+                }
+            });
+
+            renderProjects(filteredProjects);
+        }
+
+        projectSearch.addEventListener('input', filterAndSortProjects);
+        projectSort.addEventListener('change', filterAndSortProjects);
+        projectCategory.addEventListener('change', filterAndSortProjects);
+
+        // Initial render
+        renderProjects(projects);
+
+        // Service form handling
+        const serviceForm = document.getElementById('service-form');
+        const servicesList = document.getElementById('services-list');
+
+        serviceForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const title = document.getElementById('service-title').value;
+            const description = document.getElementById('service-detail').value;
+            const avenue = document.getElementById('service-description').value;
+            const rate = document.getElementById('service-rate').value;
+
+            const serviceElement = document.createElement('div');
+            serviceElement.className = 'bg-white rounded-lg shadow-md p-6';
+            serviceElement.innerHTML = `
+                <h3 class="text-xl font-bold mb-2">TITLE: ${title}</h3>
+                <p class="text-base font-semibold text-gray-500">Avenue: ${avenue}</p>  <!-- Display the selected avenue -->
+                <p class="text-base font-semibold text-gray-500">Service Description: ${description}</p>
+                <p class="text-base font-semibold text-gray-500">Hourly Rate: $${rate}</p>
+            `;
+
+            servicesList.appendChild(serviceElement);
+            serviceForm.reset();
+        });
+
+        // Function to show transaction details (placeholder)
+        function showTransactionDetails(date) {
+            alert(`Showing details for transaction on ${date}`);
+        }
+
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>

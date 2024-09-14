@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DesiGigs - Connect with Top Freelancers in India</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#6c5ce7',
+                        secondary: '#a29bfe',
+                    },
+                },
+            },
+        }
+    </script>
+
+    <!-- Google Translate Integration -->
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',  // Default language set to English
+                includedLanguages: 'hi,bn,te,mr,ta,gu,kn,or,ml,pa',  // Restrict to top 10 Indian languages
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE, 
+                autoDisplay: false  // Prevents auto language detection
+            }, 'google_translate_element');
+        }
+
+
+
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <header class="sticky top-0 z-50 w-full border-b bg-gray-900 text-white">
+        <div class="container mx-auto px-4 h-14 flex items-center justify-between">
+            <a href="/" class="flex items-center justify-center">
+                <i data-lucide="cpu" class="h-6 w-6 mr-2 text-primary"></i>
+                <span class="text-xl font-bold text-white">DesiGigs</span>
+            </a>
+    
+            <!-- Hamburger menu for mobile -->
+            <button id="mobile-menu-button" class="lg:hidden text-white focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+    
+            <!-- Desktop navigation -->
+            <nav class="hidden lg:flex gap-4 sm:gap-6 items-center">
+                <a href="/index.html" class="text-sm font-medium hover:text-primary">Home</a>
+                <a href="#" class="text-sm font-medium hover:text-primary">How It Works</a>
+                <a href="#" class="text-sm font-medium hover:text-primary">FAQs</a>
+                <a href="#" class="text-sm font-medium hover:text-primary">Contact Us</a>
+                <a href="#" class="text-sm font-medium hover:text-primary bg-primary px-4 py-2 rounded text-black hover:bg-opacity-40 flex items-center justify-center h-10">Sign Up</a>
+            </nav>
+    
+            <!-- Translate button (Rightmost, desktop only) -->
+            <div class="relative hidden lg:block">
+                <button class="flex items-center text-sm font-medium text-white hover:text-primary focus:outline-none"
+                    onclick="toggleTranslateDropdown()">
+                    <i class="fas fa-globe globe-icon text-lg mr-2"></i>
+                    <span>Translate Page</span>
+                    <svg class="w-4 h-4 ml-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
+    
+                <!-- Dropdown for language selection -->
+                <div id="google_translate_element"
+                    class="absolute right-0 mt-2 w-40 bg-white text-black rounded-lg shadow-lg hidden p-2">
+                </div>
+            </div>
+        </div>
+    
+        <!-- Mobile navigation -->
+        <nav id="mobile-menu" class="lg:hidden hidden bg-gray-800 py-4">
+            <a href="/index.html" class="block px-4 py-2 text-sm hover:bg-gray-700">Home</a>
+            <a href="#" class="block px-4 py-2 text-sm hover:bg-gray-700">How It Works</a>
+            <a href="#" class="block px-4 py-2 text-sm hover:bg-gray-700">FAQs</a>
+            <a href="#" class="block px-4 py-2 text-sm hover:bg-gray-700">Contact Us</a>
+            <a href="#" class="block px-4 py-2 text-sm hover:bg-gray-700">Sign Up</a>
+        </nav>
+    </header>
+
+    <hr>
+    <main class="flex-1">
+        <section class="w-full py-12 md:py-24 lg:py-32 xl:py-48 bg-gradient-to-r from-secondary to-primary">
+            <div class="container mx-auto px-4">
+                <div class="grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px]">
+                    <div class="flex flex-col justify-center space-y-4">
+                        <div class="flex items-center space-x-2 text-white">
+                            <i data-lucide="cpu" class="h-12 w-12"></i>
+                            <h1 class="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">DesiGigs</h1>
+                        </div>
+                        <h2 class="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-white">Connect with Top Freelancers in India</h2>
+                        <p class="max-w-[600px] text-gray-100 md:text-xl">Find the perfect match for your project or discover exciting opportunities</p>
+                        <div class="flex flex-col gap-2 min-[400px]:flex-row">
+                            <a href="#" class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-white border border-gray text-primary hover:bg-gray-300 h-10 px-4 py-2">Get Started</a>
+                            <button class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-white text-white hover:bg-primary h-10 px-4 py-2">Hire Freelancers</button>
+                            <button class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-white text-white hover:bg-primary h-10 px-4 py-2">Find Work</button>
+                        </div>
+                    </div>
+                    <img src="/landing.jpg" alt="Diverse professionals working" class="aspect-video w-full h-auto object-cover object-center rounded-xl">
+                </div>
+            </div>
+        </section>
+        <hr>
+        <section class="w-full py-12 md:py-24 lg:py-32 bg-white">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-center mb-8 text-gray-900">Featured Categories</h2>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    <div class="cursor-pointer flex flex-col items-center space-y-2 p-4 bg-secondary rounded-lg transition-transform transform hover:scale-105 hover:shadow-lg">
+                        <i data-lucide="code" class="h-10 w-10 text-primary"></i>
+                        <h3 class="font-semibold text-center text-gray-900">Web Development</h3>
+                    </div>
+                    <div class="cursor-pointer flex flex-col items-center space-y-2 p-4 bg-secondary rounded-lg transition-transform transform hover:scale-105 hover:shadow-lg">
+                        <i data-lucide="image" class="h-10 w-10 text-primary"></i>
+                        <h3 class="font-semibold text-center text-gray-900">Graphic Design</h3>
+                    </div>
+                    <div class="cursor-pointer flex flex-col items-center space-y-2 p-4 bg-secondary rounded-lg transition-transform transform hover:scale-105 hover:shadow-lg">
+                        <i data-lucide="edit-3" class="h-10 w-10 text-primary"></i>
+                        <h3 class="font-semibold text-center text-gray-900">Content Writing</h3>
+                    </div>
+                    <div class="cursor-pointer flex flex-col items-center space-y-2 p-4 bg-secondary rounded-lg transition-transform transform hover:scale-105 hover:shadow-lg">
+                        <i data-lucide="megaphone" class="h-10 w-10 text-primary"></i>
+                        <h3 class="font-semibold text-center text-gray-900">Digital Marketing</h3>
+                    </div>
+                    <div class="cursor-pointer flex flex-col items-center space-y-2 p-4 bg-secondary rounded-lg transition-transform transform hover:scale-105 hover:shadow-lg">
+                        <i data-lucide="smartphone" class="h-10 w-10 text-primary"></i>
+                        <h3 class="font-semibold text-center text-gray-900">App Development</h3>
+                    </div>
+                    <div class="cursor-pointer flex flex-col items-center space-y-2 p-4 bg-secondary rounded-lg transition-transform transform hover:scale-105 hover:shadow-lg">
+                        <i data-lucide="dollar-sign" class="h-10 w-10 text-primary"></i>
+                        <h3 class="font-semibold text-center text-gray-900">Finance and Accounting</h3>
+                    </div>
+                    <div class="cursor-pointer flex flex-col items-center space-y-2 p-4 bg-secondary rounded-lg transition-transform transform hover:scale-105 hover:shadow-lg">
+                        <i data-lucide="gamepad" class="h-10 w-10 text-primary"></i>
+                        <h3 class="font-semibold text-center text-gray-900">Game Development</h3>
+                    </div>
+                    <div class="cursor-pointer flex flex-col items-center space-y-2 p-4 bg-secondary rounded-lg transition-transform transform hover:scale-105 hover:shadow-lg">
+                        <i data-lucide="video" class="h-10 w-10 text-primary"></i>
+                        <h3 class="font-semibold text-center text-gray-900">Video and Audio Production</h3>
+                    </div>
+                </div>
+            </div>
+            
+        </section>
+        <hr class="decoration-4">
+        <section class="w-full py-12 md:py-24 lg:py-32 bg-gray-100">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-center mb-8 text-gray-900">How It Works</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="flex flex-col items-center space-y-2 text-center bg-white p-6 rounded-lg shadow-md  transition-transform transform  hover:scale-105 hover:shadow-lg hover:-translate-y-4">
+                        <div class="p-4 bg-secondary rounded-full">
+                            <i data-lucide="user-plus" class="h-8 w-8 text-primary"></i>
+                        </div>
+                        <h3 class="font-semibold text-gray-900">Post a gig or create a profile</h3>
+                        <p class="text-sm text-gray-700">Whether you're hiring or looking for work, get started with a simple profile or job posting.</p>
+                    </div>
+                    <div class="flex flex-col items-center space-y-2 text-center bg-white p-6 rounded-lg shadow-md  transition-transform transform  hover:scale-105 hover:shadow-lg hover:-translate-y-4">
+                        <div class="p-4 bg-secondary rounded-full">
+                            <i data-lucide="briefcase" class="h-8 w-8 text-primary"></i>
+                        </div>
+                        <h3 class="font-semibold text-gray-900">Connect with freelancers or clients</h3>
+                        <p class="text-sm text-gray-700">Use our platform to find the perfect match for your project or skills.</p>
+                    </div>
+                    <div class="flex flex-col items-center space-y-2 text-center bg-white p-6 rounded-lg shadow-md  transition-transform transform  hover:scale-105 hover:shadow-lg hover:-translate-y-4">
+                        <div class="p-4 bg-secondary rounded-full">
+                            <i data-lucide="dollar-sign" class="h-8 w-8 text-primary"></i>
+                        </div>
+                        <h3 class="font-semibold text-gray-900">Work together and get paid securely</h3>
+                        <p class="text-sm text-gray-700">Collaborate efficiently and enjoy secure, timely payments through our platform.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <hr>
+        <section class="w-full py-12 md:py-24 lg:py-32 bg-white">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-center mb-8 text-gray-900">Key Features</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="flex flex-col items-center space-y-2 text-center bg-secondary p-6 rounded-lg shadow-md transition-transform transform hover:scale-105 hover:shadow-lg hover:-translate-y-4">
+                        <div class="p-4 bg-white rounded-full">
+                            <i data-lucide="star" class="h-8 w-8 text-primary"></i>
+                        </div>
+                        <h3 class="font-semibold text-gray-900">AI-Powered Matching</h3>
+                        <p class="text-sm text-gray-700">Our advanced algorithms ensure the perfect match between freelancers and projects.</p>
+                    </div>
+                    <div class="flex flex-col items-center space-y-2 text-center bg-secondary p-6 rounded-lg shadow-md transition-transform transform hover:scale-105 hover:shadow-lg hover:-translate-y-4">
+                        <div class="p-4 bg-white rounded-full">
+                            <i data-lucide="dollar-sign" class="h-8 w-8 text-primary"></i>
+                        </div>
+                        <h3 class="font-semibold text-gray-900">Secure Payments with Escrow</h3>
+                        <p class="text-sm text-gray-700">Worry-free transactions with our secure escrow payment system.</p>
+                    </div>
+                    <div class="flex flex-col items-center space-y-2 text-center bg-secondary p-6 rounded-lg shadow-md transition-transform transform hover:scale-105 hover:shadow-lg hover:-translate-y-4">
+                        <div class="p-4 bg-white rounded-full">
+                            <i data-lucide="briefcase" class="h-8 w-8 text-primary"></i>
+                        </div>
+                        <h3 class="font-semibold text-gray-900">Advanced Portfolio Management</h3>
+                        <p class="text-sm text-gray-700">Showcase your best work with our intuitive portfolio tools.</p>
+                    </div>
+                    <div class="flex flex-col items-center space-y-2 text-center bg-secondary p-6 rounded-lg shadow-md transition-transform transform hover:scale-105 hover:shadow-lg hover:-translate-y-4">
+                        <div class="p-4 bg-white rounded-full">
+                            <i data-lucide="star" class="h-8 w-8 text-primary"></i>
+                        </div>
+                        <h3 class="font-semibold text-gray-900">Ratings and Reviews System</h3>
+                        <p class="text-sm text-gray-700">Build your reputation with our transparent rating and review system.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <hr>
+
+        <!-- <section class="w-full py-12 md:py-24 lg:py-32 bg-gray-100">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-center mb-8 text-gray-900">Testimonials</h2>
+                <div id="testimonial-carousel" class="relative overflow-hidden">
+                    <div id="testimonial-slider" class="flex transition-transform duration-500 ease-in-out">
+                    </div>
+                </div>
+            </div>
+        </section> -->
+
+
+        <section class="w-full py-12 md:py-24 lg:py-32 bg-gray-100">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-center mb-8 text-gray-900">Testimonials</h2>
+                <div id="testimonial-carousel" class="relative overflow-hidden">
+                    <div id="testimonial-slider" class="flex transition-transform duration-500 ease-in-out"></div>
+                    <button id="prev-button" class="absolute top-1/2 left-2 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-md z-10">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                        </svg>
+                    </button>
+                    <button id="next-button" class="absolute top-1/2 right-2 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-md z-10">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        
+        <hr>
+        <section class="w-full py-12 md:py-24 lg:py-32 bg-white">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mb-4 text-gray-900">Join DesiGigs Today</h2>
+                <p class="max-w-[600px] mx-auto text-xl mb-8 text-gray-700">Start your journey with DesiGigs and unlock a world of opportunities.</p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <button class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-white text-primary border border-gray-400 hover:bg-gray-300 h-10 px-4 py-2">I Want to Hire</button>
+                    <button class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-secondary text-white hover:bg-primary h-10 px-4 py-2">I Want to Work</button>
+                </div>
+            </div>
+        </section>
+    </main>
+    <hr>
+    <footer class="w-full py-6 bg-gray-900 text-white">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="font-semibold mb-2">About</h3>
+                    <ul class="space-y-1">
+                        <li><a href="/aboutus.html" class="hover:text-secondary">About Us</a></li>
+                        <li><a href="/team.html" class="hover:text-secondary">Our Team</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-semibold mb-2">Support</h3>
+                    <ul class="space-y-1">
+                        <li><a href="/faq.html" class="hover:text-secondary">FAQs</a></li>
+                        <li><a href="/contactus.html" class="hover:text-secondary">Contact Us</a></li>
+                        <li><a href="/termsofservice.html" class="hover:text-secondary">Terms of Service</a></li>
+                        <li><a href="/privacypolicy.html" class="hover:text-secondary">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-semibold mb-2">Follow Us</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-white hover:text-secondary">
+                            <i data-lucide="instagram" class="h-6 w-6"></i>
+                            <span class="sr-only">Instagram</span>
+                        </a>
+                        <a href="#" class="text-white hover:text-secondary">
+                            <i data-lucide="twitter" class="h-6 w-6"></i>
+                            <span class="sr-only">Twitter</span>
+                        </a>
+                        <a href="#" class="text-white hover:text-secondary">
+                            <i data-lucide="facebook" class="h-6 w-6"></i>
+                            <span class="sr-only">Facebook</span>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="font-semibold mb-2">Newsletter</h3>
+                    <p class="text-base mb-2">Subscribe to our newsletter for the latest gigs and freelancing tips</p>
+                    <form class="flex" id="newsletterForm">
+                        <input type="email" id="emailInput" placeholder="Enter your email" class="rounded-l-md text-black px-3 py-2 w-full">
+                        <button type="submit" class="rounded-r-md bg-primary hover:bg-[#5649c9] text-white px-4 py-2">Subscribe</button>
+                    </form>
+                    <p id="message" class="text-base mt-2"></p>
+                </div>
+            </div>
+            <div class="mt-8 text-center text-sm">© 2024 DesiGigs. All rights reserved.</div>
+        </div>
+    </footer>
+
+
+    <script>
+
+
+        // code for newsletter bakchodi 
+        document.getElementById('newsletterForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the form from submitting
+            
+            const emailInput = document.getElementById('emailInput').value;
+            const message = document.getElementById('message');
+            
+            if (emailInput.includes('@')) {
+                message.textContent = "Thank you for subscribing to our newsletter!";
+                message.style.color = 'white'; // Optional: set the message color to green for success
+            } else {
+                message.textContent = "Error: '@' is missing in the email address.";
+                message.style.color = 'red'; // Optional: set the message color to red for error
+            }
+        });
+
+
+        function toggleTranslateDropdown() {
+          var dropdown = document.getElementById('google_translate_element');
+          dropdown.classList.toggle('show-translate');
+        }
+      </script>
+    
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+          new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+      </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    
+    <!-- <div class="translate-container">
+              <a href="#"><i class="fas fa-globe globe-icon" onclick="toggleTranslateDropdown()"></i></a>
+              <div id="google_translate_element" class="google-translate-dropdown"></div>
+    </div> -->
+
+    <script>
+        // display lucide icons
+        lucide.createIcons();
+        //HamBurger for Phones
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        //Hamburger ENDS HERE
+        //Google Translate Dropdown
+        function toggleTranslateDropdown() {
+            var dropdown = document.getElementById('google_translate_element');
+            dropdown.classList.toggle('hidden');
+        }
+        //Google Translate ENDS HERE
+
+        // testimonials slider?
+        const testimonials = [
+        {
+            text: "DesiGigs has transformed my freelancing career. The AI-powered matching system connects me with perfect clients!",
+            name: "Priya S.",
+            role: "Freelancer"
+        },
+        {
+            text: "Finding top talent has never been easier. DesiGigs's platform is intuitive and filled with skilled professionals.",
+            name: "Rahul M.",
+            role: "Client"
+        },
+        {
+            text: "The secure payment system gives me peace of mind. I can focus on my work without worrying about getting paid.",
+            name: "Anita K.",
+            role: "Freelancer"
+        },
+        {
+            text: "As a startup founder, DesiGigs has been a game-changer. We've built an incredible remote team through this platform.",
+            name: "Alex T.",
+            role: "Entrepreneur"
+        },
+        {
+            text: "The diversity of skills on DesiGigs is impressive. I've found experts for every project, big or small.",
+            name: "Sarah L.",
+            role: "Project Manager"
+        },
+        {
+            text: "DesiGigs's dispute resolution system is fair and efficient. It creates a trustworthy environment for both parties.",
+            name: "Michael R.",
+            role: "Freelancer"
+        },
+        {
+            text: "The platform's analytics help me track my performance and improve my services. It's like having a business coach!",
+            name: "Elena G.",
+            role: "Freelancer"
+        },
+        {
+            text: "I love how DesiGigs vets all freelancers. As a client, I know I'm always working with top-notch professionals.",
+            name: "David W.",
+            role: "Client"
+        }
+    ];
+
+const slider = document.getElementById('testimonial-slider');
+const prevButton = document.getElementById('prev-button');
+const nextButton = document.getElementById('next-button');
+let currentIndex = 0;
+let itemWidth;
+let autoSlideInterval;
+
+function createTestimonialElement(testimonial) {
+    const div = document.createElement('div');
+    div.className = 'w-full md:w-1/2 lg:w-1/4 flex-shrink-0 px-4';
+    div.innerHTML = `
+        <div class="flex flex-col items-center space-y-2 text-center bg-white p-6 rounded-lg shadow-md h-full">
+            <div class="w-12 h-12 bg-secondary rounded-full mb-4" aria-hidden="true"></div>
+            <p class="text-lg mb-4 text-gray-700">"${testimonial.text}"</p>
+            <p class="font-semibold text-gray-900">${testimonial.name}</p>
+            <p class="text-sm text-gray-600">${testimonial.role}</p>
+        </div>
+    `;
+    return div;
+}
+
+function populateSlider() {
+    testimonials.forEach(testimonial => {
+        slider.appendChild(createTestimonialElement(testimonial));
+    });
+    // Clone the first set of testimonials and append them to the end for smooth looping
+    const visibleItems = getVisibleItems();
+    for (let i = 0; i < visibleItems; i++) {
+        slider.appendChild(createTestimonialElement(testimonials[i]));
+    }
+    updateItemWidth();
+}
+
+function updateItemWidth() {
+    const windowWidth = window.innerWidth;
+    if (windowWidth < 768) {
+        itemWidth = 100; // 1 item on mobile
+    } else if (windowWidth < 1024) {
+        itemWidth = 50; // 2 items on tablet
+    } else {
+        itemWidth = 25; // 4 items on desktop
+    }
+}
+
+function getVisibleItems() {
+    const windowWidth = window.innerWidth;
+    if (windowWidth < 768) return 1;
+    if (windowWidth < 1024) return 2;
+    return 4;
+}
+
+function slideTestimonials(direction) {
+    currentIndex += direction;
+    const maxIndex = testimonials.length;
+    
+    if (currentIndex >= maxIndex) {
+        // Reset to the beginning instantly when we reach the cloned elements
+        slider.style.transition = 'none';
+        slider.style.transform = `translateX(0%)`;
+        setTimeout(() => {
+            slider.style.transition = 'transform 500ms ease-in-out';
+            currentIndex = direction;
+            slider.style.transform = `translateX(-${currentIndex * itemWidth}%)`;
+        }, 50);
+    } else if (currentIndex < 0) {
+        // Jump to the end when going back from the first slide
+        slider.style.transition = 'none';
+        slider.style.transform = `translateX(-${maxIndex * itemWidth}%)`;
+        setTimeout(() => {
+            slider.style.transition = 'transform 500ms ease-in-out';
+            currentIndex = maxIndex - 1;
+            slider.style.transform = `translateX(-${currentIndex * itemWidth}%)`;
+        }, 50);
+    } else {
+        slider.style.transform = `translateX(-${currentIndex * itemWidth}%)`;
+    }
+}
+
+function startAutoSlide() {
+    autoSlideInterval = setInterval(() => slideTestimonials(1), 3000); // Change testimonials every 5 seconds
+}
+
+function stopAutoSlide() {
+    clearInterval(autoSlideInterval);
+}
+
+function resetAutoSlide() {
+    stopAutoSlide();
+    startAutoSlide();
+}
+
+populateSlider();
+updateItemWidth();
+startAutoSlide();
+
+window.addEventListener('resize', () => {
+    updateItemWidth();
+    slider.style.transform = `translateX(-${currentIndex * itemWidth}%)`;
+});
+
+prevButton.addEventListener('click', () => {
+    slideTestimonials(-1);
+    resetAutoSlide();
+});
+
+nextButton.addEventListener('click', () => {
+    slideTestimonials(1);
+    resetAutoSlide();
+});
+
+// Pause auto-slide when hovering over the carousel
+document.getElementById('testimonial-carousel').addEventListener('mouseenter', stopAutoSlide);
+document.getElementById('testimonial-carousel').addEventListener('mouseleave', startAutoSlide);
+</script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+{
+  "name": "codethon",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "axios": "^1.7.7",
+    "body-parser": "^1.20.3",
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
+    "ejs-mate": "^4.0.0",
+    "express": "^4.21.0",
+    "express-session": "^1.18.0",
+    "mammoth": "^1.8.0",
+    "method-override": "^3.0.0",
+    "mongoose": "^8.6.2",
+    "multer": "^1.4.5-lts.1",
+    "nodemailer": "^6.9.15",
+    "nodemon": "^3.1.4",
+    "path": "^0.12.7",
+    "pdf-parse": "^1.1.1"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.11"
+  }
+}

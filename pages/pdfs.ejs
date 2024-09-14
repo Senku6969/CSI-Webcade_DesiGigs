@@ -1,0 +1,20 @@
+<% layout("../layouts/boilerplate") %>
+<h1>Uploaded PDFs</h1>
+<hr />
+
+<% if (items.length === 0) { %>
+    <p>No PDFs have been uploaded yet.</p>
+<% } else { %>
+    <ul>
+        <% items.forEach(function(pdf) { %>
+            <li>
+                <h2><%= pdf.name %></h2>
+                <p><%= pdf.desc %></p>
+                <a href="/pdf/<%= pdf._id %>" target="_blank">View PDF</a>
+            </li>
+        <% }) %>
+    </ul>
+<% } %>
+
+<hr />
+<a href="/upload-pdf">Upload a new PDF</a>

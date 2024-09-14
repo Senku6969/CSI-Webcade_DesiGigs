@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DesiGigs - Connect with Top Freelancers in India</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#6c5ce7',
+                        secondary: '#a29bfe',
+                    },
+                },
+            },
+        }
+    </script>
+
+    <!-- Google Translate Integration -->
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',  // Default language set to English
+                includedLanguages: 'hi,bn,te,mr,ta,gu,kn,or,ml,pa',  // Restrict to top 10 Indian languages
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE, 
+                autoDisplay: false  // Prevents auto language detection
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <header class="sticky top-0 z-50 w-full border-b bg-gray-900 text-white">
+        <div class="container mx-auto px-4 h-14 flex items-center justify-between">
+            <a href="/" class="flex items-center justify-center">
+                <i data-lucide="cpu" class="h-6 w-6 mr-2 text-primary"></i>
+                <span class="text-xl font-bold text-white">DesiGigs</span>
+            </a>
+    
+            <!-- Hamburger menu for mobile -->
+            <button id="mobile-menu-button" class="lg:hidden text-white focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+    
+            <!-- Desktop navigation -->
+            <nav class="hidden lg:flex gap-4 sm:gap-6 items-center">
+                <a href="/home" class="block px-4 py-2 text-sm hover:bg-gray-700">Home</a>
+            <a href="/home#works" class="block px-4 py-2 text-sm hover:bg-gray-700">How It Works</a>
+            <a href="/faq" class="block px-4 py-2 text-sm hover:bg-gray-700">FAQs</a>
+            <a href="/contact" class="block px-4 py-2 text-sm hover:bg-gray-700">Contact Us</a>
+            <a href="/auth" class="block px-4 py-2 text-sm hover:bg-gray-700">Sign Up</a></nav>
+    
+            <!-- Translate button (Rightmost, desktop only) -->
+            <div class="relative hidden lg:block">
+                <button class="flex items-center text-sm font-medium text-white hover:text-primary focus:outline-none"
+                    onclick="toggleTranslateDropdown()">
+                    <i class="fas fa-globe globe-icon text-lg mr-2"></i>
+                    <span>Translate Page</span>
+                    <svg class="w-4 h-4 ml-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
+    
+                <!-- Dropdown for language selection -->
+                <div id="google_translate_element"
+                    class="absolute right-0 mt-2 w-40 bg-white text-black rounded-lg shadow-lg hidden p-2">
+                </div>
+            </div>
+        </div>
+    
+        <!-- Mobile navigation -->
+        <nav id="mobile-menu" class="lg:hidden hidden bg-gray-800 py-4">
+            <a href="/home" class="block px-4 py-2 text-sm hover:bg-gray-700">Home</a>
+            <a href="/home#works" class="block px-4 py-2 text-sm hover:bg-gray-700">How It Works</a>
+            <a href="/faq" class="block px-4 py-2 text-sm hover:bg-gray-700">FAQs</a>
+            <a href="/contact" class="block px-4 py-2 text-sm hover:bg-gray-700">Contact Us</a>
+            <a href="/auth" class="block px-4 py-2 text-sm hover:bg-gray-700">Sign Up</a>
+        </nav>
+    </header>
+
+    <main class="flex-1">
+        <section class="w-full py-12 md:py-24 bg-gradient-to-r from-secondary to-primary">
+            <div class="container mx-auto px-4">
+                <h1 class="text-7xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-white mb-6 text-center">Frequently Asked Questions</h1>
+            </div>
+        </section>
+
+        <section class="w-full py-12 md:py-24 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="max-w-3xl mx-auto" id="faq-container">
+                    <!-- FAQ items will be dynamically inserted here -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+
+
+
+    
+    <footer class="w-full py-6 bg-gray-900 text-white">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="font-semibold mb-2">About</h3>
+                    <ul class="space-y-1">
+                        <li><a href="/aboutus" class="hover:text-secondary">About Us</a></li>
+                        <li><a href="/team" class="hover:text-secondary">Our Team</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-semibold mb-2">Support</h3>
+                    <ul class="space-y-1">
+                        <li><a href="/faq" class="hover:text-secondary">FAQs</a></li>
+                        <li><a href="/contact" class="hover:text-secondary">Contact Us</a></li>
+                        <li><a href="/tos" class="hover:text-secondary">Terms of Service</a></li>
+                        <li><a href="/policy" class="hover:text-secondary">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-semibold mb-2">Follow Us</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-white hover:text-secondary">
+                            <i data-lucide="instagram" class="h-6 w-6"></i>
+                            <span class="sr-only">Instagram</span>
+                        </a>
+                        <a href="#" class="text-white hover:text-secondary">
+                            <i data-lucide="twitter" class="h-6 w-6"></i>
+                            <span class="sr-only">Twitter</span>
+                        </a>
+                        <a href="#" class="text-white hover:text-secondary">
+                            <i data-lucide="facebook" class="h-6 w-6"></i>
+                            <span class="sr-only">Facebook</span>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="font-semibold mb-2">Newsletter</h3>
+                    <p class="text-base mb-2">Subscribe to our newsletter for the latest gigs and freelancing tips</p>
+                    <form class="flex" id="newsletterForm">
+                        <input type="email" id="emailInput" placeholder="Enter your email" class="rounded-l-md text-black px-3 py-2 w-full">
+                        <button type="submit" class="rounded-r-md bg-primary hover:bg-[#5649c9] text-white px-4 py-2">Subscribe</button>
+                    </form>
+                    <p id="message" class="text-base mt-2"></p>
+                </div>
+            </div>
+            <div class="mt-8 text-center text-sm">© 2024 DesiGigs. All rights reserved.</div>
+        </div>
+    </footer>
+
+
+    <script>
+        // code for newsletter bakchodi 
+        document.getElementById('newsletterForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the form from submitting
+            
+            const emailInput = document.getElementById('emailInput').value;
+            const message = document.getElementById('message');
+            
+            if (emailInput.includes('@')) {
+                message.textContent = "Thank you for subscribing to our newsletter!";
+                message.style.color = 'white'; // Optional: set the message color to green for success
+            } else {
+                message.textContent = "Error: '@' is missing in the email address.";
+                message.style.color = 'red'; // Optional: set the message color to red for error
+            }
+        });
+
+
+        function toggleTranslateDropdown() {
+          var dropdown = document.getElementById('google_translate_element');
+          dropdown.classList.toggle('show-translate');
+        }
+      </script>
+    
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+          new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+      </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    
+
+    <script>
+        // display lucide icons
+        lucide.createIcons();
+        //HamBurger for Phones
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        //Hamburger ENDS HERE
+
+        //Google Translate Dropdown
+        function toggleTranslateDropdown() {
+            var dropdown = document.getElementById('google_translate_element');
+            dropdown.classList.toggle('hidden');
+        }
+        //Google Translate ENDS HERE
+
+        const faqs = [
+        {
+            question: "What is the purpose of this platform?",
+            answer: "The platform aims to connect freelancers and gig workers in India with short-term and project-based job opportunities, providing tools for efficient project management and secure transactions."
+        },
+        {
+            question: "Who can use this platform?",
+            answer: "Freelancers seeking short-term or project-based work and employers looking to hire freelancers can both use the platform."
+        },
+        {
+            question: "How does the platform benefit freelancers?",
+            answer: "Freelancers gain access to various job opportunities, a detailed profile management system, and secure payment features to manage projects and earnings efficiently."
+        },
+        {
+            question: "How does the platform benefit employers?",
+            answer: "Employers can find qualified freelancers, post job opportunities, invite applicants, and manage projects more effectively through a streamlined process."
+        },
+        {
+            question: "How do freelancers create a profile?",
+            answer: "Freelancers sign up, then create a profile by detailing their skills, experience, portfolio, and setting their rates."
+        },
+        {
+            question: "Can freelancers update their profiles?",
+            answer: "Yes, freelancers can update their profiles anytime to reflect new skills, experiences, and portfolio items."
+        },
+        {
+            question: "How does the rating and review system work?",
+            answer: "After project completion, both freelancers and employers can leave ratings and reviews to provide feedback and help others assess their work."
+        },
+        {
+            question: "What should be included in a freelancer's portfolio?",
+            answer: "A portfolio should feature examples of past work, project descriptions, and any notable achievements that showcase the freelancer's skills."
+        },
+        {
+            question: "Can freelancers have multiple profiles?",
+            answer: "No, each freelancer is allowed only one profile to maintain consistency and accuracy in their work history and credentials."
+        },
+        {
+            question: "How can freelancers set their rates?",
+            answer: "Freelancers can set their rates based on their skills, experience, and the complexity of the jobs they are seeking. This can be updated in their profile settings."
+        },
+        {
+            question: "How do employers create an account?",
+            answer: "Employers can sign up by providing their business details and creating a profile where they can post jobs and manage projects."
+        },
+        {
+            question: "Can employers update their profiles?",
+            answer: "Yes, employers can update their profiles, including company information and project requirements, at any time."
+        },
+        {
+            question: "What if a freelancer forgets their password?",
+            answer: "Freelancers can reset their password using the \"Forgot Password\" feature on the login page, which will guide them through the process."
+        },
+        {
+            question: "How can freelancers delete their accounts?",
+            answer: "Freelancers can request account deletion through the platform's settings or by contacting customer support."
+        },
+        {
+            question: "Can employers and freelancers have multiple accounts?",
+            answer: "No, both employers and freelancers are only allowed one account to ensure the accuracy of job postings and profiles."
+        },
+        {
+            question: "How can employers post a job?",
+            answer: "Employers can post a job by filling out a project description, setting requirements, and defining a budget. They can then invite freelancers to apply."
+        },
+        {
+            question: "Can employers search for specific freelancers?",
+            answer: "Yes, employers can use search filters to find freelancers with the specific skills and experience needed for their projects."
+        },
+        {
+            question: "How can freelancers find job opportunities?",
+            answer: "Freelancers can search for jobs using filters, browse listings, and set up job alerts based on their skills and preferences."
+        },
+        {
+            question: "Are there AI-based recommendations for job matching?",
+            answer: "Yes, the platform uses AI to recommend relevant job opportunities to freelancers based on their profiles and previous activities."
+        },
+        {
+            question: "What should an employer include in a job posting?",
+            answer: "Employers should include a detailed project description, specific requirements, budget, and any deadlines to attract the right freelancers."
+        },
+        {
+            question: "What is an escrow account?",
+            answer: "An escrow account temporarily holds funds from the employer until the project is completed satisfactorily, ensuring both parties are protected."
+        },
+        {
+            question: "How do payments work on the platform?",
+            answer: "Employers deposit funds into an escrow account, which are released to the freelancer upon successful project completion."
+        },
+        {
+            question: "What payment methods are accepted?",
+            answer: "The platform supports various payment methods, including credit/debit cards and bank transfers, through secure payment gateways."
+        },
+        {
+            question: "Are there any fees for using the platform?",
+            answer: "Yes, service fees may be charged to freelancers, employers, or both, based on the total amount of the project."
+        },
+        {
+            question: "How can freelancers track their earnings?",
+            answer: "Freelancers can track their earnings through their dashboard, which provides details on completed projects, payments received, and pending funds."
+        },
+        {
+            question: "What happens if a freelancer does not complete a project?",
+            answer: "If a freelancer does not complete a project, the funds in the escrow account may be refunded to the employer, depending on the platform's dispute resolution policies."
+        },
+        {
+            question: "Can freelancers withdraw their earnings anytime?",
+            answer: "Yes, freelancers can request to withdraw their earnings from their account balance at any time, subject to the platform's withdrawal policies."
+        },
+        {
+            question: "What should employers do if they have a dispute with a freelancer?",
+            answer: "Employers should contact customer support to resolve disputes. The platform will mediate and provide guidance based on its policies."
+        },
+        {
+            question: "How are transaction fees handled?",
+            answer: "Transaction fees are typically deducted from the total payment amount or charged separately, depending on the platform's fee structure."
+        },
+        {
+            question: "Can users change their payment methods?",
+            answer: "Yes, users can update their payment methods through their account settings to ensure transactions are processed smoothly."
+        }
+    ];
+
+    const faqContainer = document.getElementById('faq-container');
+
+faqs.forEach((faq, index) => {
+    const faqItem = document.createElement('div');
+    faqItem.className = 'border-b border-gray-200 py-4';
+    faqItem.innerHTML = `
+        <button class="faq-toggle flex justify-between items-center w-full text-left" data-index="${index}">
+            <h3 class="text-lg font-semibold text-gray-900">${faq.question}</h3>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="chevron w-5 h-5 text-primary">
+                <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+        </button>
+        <p class="faq-answer mt-2 text-gray-700 hidden">${faq.answer}</p>
+    `;
+    faqContainer.appendChild(faqItem);
+});
+
+faqContainer.addEventListener('click', (e) => {
+    const toggle = e.target.closest('.faq-toggle');
+    if (toggle) {
+        const index = parseInt(toggle.dataset.index);
+        const answer = toggle.nextElementSibling;
+        const chevron = toggle.querySelector('.chevron');
+
+        // Close all other answers
+        document.querySelectorAll('.faq-answer').forEach((el, i) => {
+            if (i !== index) {
+                el.classList.add('hidden');
+                el.previousElementSibling.querySelector('.chevron').style.transform = 'rotate(0deg)';
+            }
+        });
+
+        // Toggle the clicked answer
+        answer.classList.toggle('hidden');
+        chevron.style.transform = answer.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
+    }
+});
+</script>
+
+<script>
+    window.embeddedChatbotConfig = {
+    chatbotId: "QadB87Us4epjyKsvLUcv1",
+    domain: "www.chatbase.co"
+    }
+    </script>
+    <script
+    src="https://www.chatbase.co/embed.min.js"
+    chatbotId="QadB87Us4epjyKsvLUcv1"
+    domain="www.chatbase.co"
+    defer>
+    </script>
+</body>
+</html>

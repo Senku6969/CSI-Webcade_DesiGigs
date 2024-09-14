@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    <!-- <link rel="stylesheet" href="reg.css"> -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+:root {
+    --main-color: #6c5ce7;
+    --secondary-color: #a29bfe;
+    --lighter-color: #e0e0e7;
+    --light-color: #b0b0c0;
+    --dark-color: #52505e;
+    --font-smaller: 14px;
+    --font-bigger: 20px;
+}
+*{
+    margin: 0;
+    padding: 0;
+}
+*,:before,::after{
+    box-sizing: border-box;
+}
+html{
+    scroll-behavior: smooth;
+}
+body{
+    font-family: "Montserrat";
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.8;
+    color: var(--dark-color);
+   
+}
+a{
+    text-decoration: none;
+    color: inherit;
+}
+ul{
+    list-style: none;
+}
+h1,h2,h3{
+    font-weight: 700;
+    line-height: 1.25;
+    margin: 0 0 0.5em;
+}
+img{
+    max-width: 100%;
+    vertical-align: middle;
+}
+.container{
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2em;
+}
+.form-box{
+    display: flex;
+    flex-direction: column;
+    margin-top: 5em;
+    border: solid 8px var(--lighter-color);
+    border-radius: 15px;
+    background-color: #faf9ff;
+}
+/* progress */
+
+.form-box .progress{
+    position: relative;
+    padding: 1em;
+}
+.logo{
+    font-size: 3em;
+    font-weight: 800;
+    color: var(--dark-color);
+    padding: 40px;
+    text-align: center;
+}
+.logo span{
+    color: var(--main-color);
+}
+
+
+/* progress steps */
+.progress ul.progress-steps{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 2em;
+}
+.progress ul.progress-steps li{
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 2em;
+}
+.progress ul.progress-steps li > span{
+    position: relative;
+    width: 40px;
+    height: 40px;
+    font-size: var(--font-smaller);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1em;
+    border-radius: 50%;
+    background-color: var(--lighter-color);
+    z-index: 1;
+}
+.progress ul.progress-steps li.active > span{
+    background-color: var(--main-color);
+    color: white;
+    border: 4px solid var(--secondary-color);
+    z-index: 1;
+}
+.progress ul.progress-steps li p span{
+    font-size: var(--font-smaller);
+    color: var(--light-color);
+    display: none;
+}
+.progress ul li p{
+    position: absolute;
+    top: -2em;
+    font-size: 12px;
+}
+
+/* -->Form*/
+.form-three {
+    padding: 20px;
+    background-color: #faf9ff;
+}
+
+.form-three h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    
+}
+
+.form-three label {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+textarea,
+.form-three input  {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid var(--light-color);
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+
+
+.form-three div {
+    margin-bottom: 20px;
+}
+.form-box form{
+    width: 100%;
+    padding: 3em 1em;
+    background-color: white;
+    border-radius: 30px 30px 15px 15px;
+
+}
+form > div{
+    max-width: 400px;
+    margin: 0 auto;
+}
+form > div p{
+    color: var(--light-color);
+    margin-bottom: 2em;
+}
+form > div > div:not(.checkbox){
+   display: flex;
+   flex-direction: column;
+   margin-bottom: 2em;   
+}
+form :where(input){
+    height: 40px;
+    padding: 0 1em;
+    border-radius: 7px;
+    outline: var(--secondary-color);
+    border: 1px solid var(--light-color);
+    background-color: transparent;
+}
+form :where(textarea):focus,
+form :where(input):focus{
+    box-shadow: 0 5px 10px gray;
+}
+form label{
+    font-size: var(--font-smaller);
+    font-weight: 600;
+}
+form .grouping{
+    display: flex;
+}
+form .grouping input{
+    max-width: 70px;
+    text-align: center;
+    margin-right: 1em;
+}
+form .checkbox input{
+    height: auto;
+}
+form > div:not(.btn-group){
+    display: none;
+    -webkit-animation: fadeIn .8s cubic-bezier(0.39, 0.575, 0.565, 1);
+    animation: fadeIn .6s cubic-bezier(0.39, 0.575, 0.565, 1);
+}
+@keyframes fadeIn {
+    0%{
+        opacity: 0;
+        -webkit-transform: translateY(10%);
+        transform: translateY(10%);
+    }    
+    100%{
+        opacity: 1;
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+    }
+}
+form > div.active{
+    display: block;
+}
+
+/* -->Button */
+/* will hide form elements */
+
+.btn-group{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+    margin-top: 2em;
+}
+.btn-group [class*="btn"]{
+    background-color: #6c5ce7;
+    color: white;
+    padding: 1em 2.5em;
+    border: 2px solid var(--secondary-color);
+    border-radius: 30px;
+    cursor: pointer;
+}
+.btn-group [class*="btn"]:disabled{
+    background-color: var(--light-color);
+    border-color: var(--lighter-color);
+    cursor: text;
+}
+.btn-group [class*="btn"]:hover:not(:disabled){
+    box-shadow: 0 5px 10px gray;
+}
+.btn-group .btn-submit,
+.form-four.active ~ .btn-group .btn-next{
+    display: none;
+}
+.form-four.active ~ .btn-group .btn-submit{
+    display: block;
+}
+.form-four.active ~ .btn-group{
+    justify-content: space-between;
+}
+
+
+::placeholder{
+    color: var(--light-color);
+}
+
+
+
+@media screen and (min-width: 967px) {
+    .form-box{
+        display: flex;
+        flex-direction: row;
+    }
+    .form-box .progress{
+        flex: 1 0 35%;
+        min-width: 300px;
+        padding: 3em;
+    }
+    .logo{
+        margin: -48px -48px 48px;
+    }
+    .progress ul.progress-steps{
+        flex-direction: column;
+        gap: 0;
+    }
+    .progress ul.progress-steps li:not(:last-child)::before{
+        content: '';
+        position: absolute;
+        left: 20px;
+        top: 30px;
+        width: 2px;
+        height: 65px;
+        background-color: var(--lighter-color);
+    } 
+    .form-box form{
+        padding: 3em;
+        border-radius: 0 15px 15px 0;
+    }
+    .progress ul li p{
+        position: relative;
+        top: auto;
+        font-size: inherit;
+    }
+    .progress ul.progress-steps li p span{
+        display: block;
+    }
+}
+.skills-input-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.skill-box {
+    background-color: #f0f0f0;
+    padding: 6px 12px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+}
+
+.skill-box span {
+    margin-right: 8px;
+}
+
+.remove-skill-btn {
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    padding: 0 6px;
+    font-size: 14px;
+    line-height: 18px;
+}
+
+.skills-input-container, .urls-input-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.skill-box {
+    background-color: #f0f0f0;
+    padding: 6px 12px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+}
+
+.skill-box span {
+    margin-right: 8px;
+}
+
+.remove-skill-btn {
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    padding: 0 6px;
+    font-size: 14px;
+    line-height: 18px;
+}
+
+    </style>
+</head>
+<body>
+    <div id="page" class="site">
+        <div class="container">
+            <div class="form-box">
+                <div class="progress">
+                    <div class="logo"><a href="/"><span>Desi</span>Gigs</a><br><h6 style="font-size: 15px;">Complete the Freelancer Registration process</h6></div>
+                   
+                    <ul class="progress-steps">
+                        <li class="step active">
+                            <span>1</span>
+                            <p>Personal<br><span>Fill Personal details</span></p>
+                        </li>
+                        <li class="step">
+                            <span>2</span>
+                            <p>Contact<br><span>Fill Contact details</span></p>
+                        </li>
+                        <li class="step">
+                            <span>3</span>
+                            <p>Professional<br><span>Fill Professional details</span></p>
+                        </li>
+                        <li class="step">
+                            <span>4</span>
+                            <p>Security<br><span>Fill Security details</span></p>
+                        </li>
+                    </ul>
+                </div>
+                <form action="/freelancerDetails" method="post">
+                    <div class="form-one form-step active">
+                        <div class="bg-svg"></div>
+                        <h2>Personal Information</h2>
+                        <p>Enter your personal information correctly</p>
+                        <div>
+                            <label>First Name</label>
+                            <input type="text" placeholder="e.g. Nitesh" name="Candidate[FirstName]">
+                        </div>
+                        <div>
+                            <label>Last Name</label>
+                            <input type="text" placeholder="e.g. Domal" name="Candidate[LastName]">
+                        </div>
+                        <div class="birth">
+                            <label>Date of Birth</label>
+                            <div class="grouping">
+                                <input type="text" pattern="[0-9]*" name="day" value="" min="0" max="31" placeholder="DD" name="Candidate[dob.date]">
+                                <input type="text" pattern="[0-9]*" name="month" value="" min="0" max="12" placeholder="MM" name="Candidate[dob.month]">
+                                <input type="text" pattern="[0-9]*" name="year" value="" min="0" max="2024" placeholder="YYYY" name="Candidate[dob.years]">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-two form-step">
+                        <div class="bg-svg"></div>
+                        <h2>Contact Information</h2>
+                        <div>
+                            <label for="">Upload Your Photo</label>
+                            <input type="file" placeholder="img.jpg">
+                        </div>
+                        <div>
+                            <label for="">Phone</label>
+                            <input type="tel" placeholder="+91XXXXXXXXXX" name="Candidate[phone]">
+                        </div>
+                        <div>
+                            <label for="">Address</label>
+                            <input type="text" placeholder="Street Name, Appartment, building, Society" name="Candidate[location.address]">
+                        </div>
+                        <div>
+                            <label for="">City</label>
+                            <input type="text" placeholder="City" name="Candidate[location.city]">
+                        </div>
+                        <div>
+                            <label for="">State</label>
+                            <input type="text" placeholder="State" name="Candidate[location.state]">
+                        </div>
+                        <div>
+                            <label for="">Pincode</label>
+                            <input type="text" placeholder="Pincode" name="Candidate[pincode]">
+                        </div>
+
+                    </div> 
+                    <div class="form-three form-step">
+                        <div class="bg-svg">
+                            <h2>Professional Details</h2>
+                            <div>
+                                <label>Enter your Skills</label><br>
+                                <div class="skills-input-container">
+                                    <input type="text" id="skillsInput" placeholder="Web Development, Digital Marketing ..." onkeydown="addSkill(event)">
+                                </div>
+                                <input type="hidden" name="Candidate[skills]" id="skillsArray">
+                            </div>
+
+                            <div>
+                                <label>About Me</label><br>
+                                <textarea name="" id="" style="outline: none;" name="Candidate[aboutme]"></textarea>
+                            </div>
+                            <div>
+                                <label>Upload Your Resume</label>
+                                <input type="file" placeholder="resume.pdf">
+                            </div>
+                            <div>
+                                <label class="block text-dark text-sm font-bold mb-2" for="experience">
+                                    Experience (if any)
+                                </label>
+                                <textarea
+                                    class="shadow appearance-none border rounded w-full py-2 px-3 text-dark leading-tight focus:outline-none focus:ring-2 focus:ring-main"
+                                    id="experience" placeholder="Describe your work experience" rows="4" name="Candidate[workexp.desc]"></textarea>
+                            </div>
+                            <div>
+                                <label>Professional URLs</label><br>
+                                <div class="urls-input-container">
+                                    <input type="text" id="urlsInput" placeholder="https://github.com/username, https://devfolio.co/" onkeydown="addUrl(event)" name="Candidate[url]">
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="form-four form-step">
+                        <div class="bg-svg"></div>
+                        <h2>Security</h2>
+                        <div>
+                            <label>Email</label>
+                            <input type="email" placeholder="Your Email Address" name="Candidate[email]">
+                        </div>
+                        <div>
+                            <label>Username</label>
+                            <input type="text" placeholder="Username" name="Candidate[username]">
+                        </div>
+                        <div>
+                            <label>Password</label>
+                            <input type="password" placeholder="Enter Password" name="Candidate[password]">
+                        </div>
+                        <div>
+                            <input type="password" placeholder="Confirm Password">
+                        </div>
+                        <div class="checkbox">
+                            <input type="checkbox" class="chk-box">
+                            <label for="chk-box">Recieve regular updates regarding our news letter</label><br>
+                            <input type="checkbox" class="chk-box"> 
+                            <label for="chk-box">Yes, I understand and agree to the DesiGigs<br><a href="#" style="color: blue;">Terms of Service</a> and <a href="#" style="color: blue;" >Privacy Policy</a> .</label>
+                        </div> 
+                    </div>  
+                    <div class="btn-group">
+                        <button class="btn-prev" disabled>Back</button>
+                        <button class="btn-next">Next Step</button>
+                        <button type="submit" class="btn-submit">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- <script src="reg.js"></script> -->
+     <script>
+        const nextButton = document.querySelector('.btn-next')
+const prevButton = document.querySelector('.btn-prev')
+const steps = document.querySelectorAll('.step')
+const form_steps = document.querySelectorAll('.form-step')
+const skillsArrayInput = document.getElementById('skillsArray');
+
+function addSkill(event) {
+    const inputValue = skillsInput.value.trim();
+
+    if ((event.key === 'Enter' || event.key === ',') && inputValue !== '') {
+        event.preventDefault(); // Prevent form submission
+
+        // Create a skill box element
+        const skillBox = document.createElement('div');
+        skillBox.classList.add('skill-box');
+        skillBox.innerHTML = `
+            <span>${inputValue}</span>
+            <button class="remove-skill-btn" onclick="removeSkill(this)">x</button>
+        `;
+
+        // Add skill box to the container and clear input
+        skillsContainer.insertBefore(skillBox, skillsInput);
+        updateSkillsArray(inputValue);
+        skillsInput.value = '';
+    }
+}
+
+// Remove skill box
+function removeSkill(button) {
+    const skillBox = button.parentElement;
+    const skillText = skillBox.querySelector('span').textContent;
+    skillsContainer.removeChild(skillBox);
+    updateSkillsArray(skillText, true);
+}
+
+// Update the hidden input with the skills array
+function updateSkillsArray(skill, remove = false) {
+    let skillsArray = skillsArrayInput.value ? skillsArrayInput.value.split(',') : [];
+
+    if (remove) {
+        skillsArray = skillsArray.filter(s => s !== skill);
+    } else {
+        skillsArray.push(skill);
+    }
+
+    skillsArrayInput.value = skillsArray.join(',');
+}
+
+let active = 1;
+
+nextButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    active++
+    if(active > steps.length){
+        active = steps.length
+    }
+    updateProgress();
+})
+
+prevButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    active--
+    if(active < 1){
+        active = 1
+    }
+    updateProgress();
+})
+
+const updateProgress = () =>{
+    console.log('steps.length => ' + steps.length)
+    console.log('active => ' + active)
+
+    //toggle 
+    steps.forEach((step, i) => {
+        if (i === (active-1)) {
+          step.classList.add('active');
+          form_steps[i].classList.add('active');
+          console.log('i =>' + i);
+        } else {
+          step.classList.remove('active');
+          form_steps[i].classList.remove('active');
+        }
+    })
+
+    //enable disable 
+    if (active === 1){
+        prevButton.disabled = true
+    }
+    else if(active === steps.length){
+        nextButton.disabled = true
+    }
+    else{
+        prevButton.disabled = false
+        nextButton.disabled = false
+    }
+}
+const skillsContainer = document.querySelector('.skills-input-container');
+const skillsInput = document.getElementById('skillsInput');
+
+// Add skill when user presses 'Enter' or ',' key
+function addSkill(event) {
+    const inputValue = skillsInput.value.trim();
+
+    if ((event.key === 'Enter' || event.key === ',') && inputValue !== '') {
+        event.preventDefault(); // Prevent form submission
+
+        // Create a skill box element
+        const skillBox = document.createElement('div');
+        skillBox.classList.add('skill-box');
+        skillBox.innerHTML = `
+            <span>${inputValue}</span>
+            <button class="remove-skill-btn" onclick="removeSkill(this)">x</button>
+        `;
+
+        // Add skill box to the container and clear input
+        skillsContainer.insertBefore(skillBox, skillsInput);
+        skillsInput.value = '';
+    }
+}
+
+// Remove skill box
+function removeSkill(button) {
+    const skillBox = button.parentElement;
+    skillsContainer.removeChild(skillBox);
+}
+const urlsContainer = document.querySelector('.urls-input-container');
+const urlsInput = document.getElementById('urlsInput');
+
+// Add URL when user presses 'Enter' or ',' key
+function addUrl(event) {
+    const urlValue = urlsInput.value.trim();
+
+    if ((event.key === 'Enter' || event.key === ',') && urlValue !== '') {
+        event.preventDefault(); // Prevent form submission
+
+        // Create a URL box element
+        const urlBox = document.createElement('div');
+        urlBox.classList.add('skill-box');  // Reuse the same styling as skills
+        urlBox.innerHTML = `
+            <span>${urlValue}</span>
+            <button class="remove-skill-btn" onclick="removeUrl(this)">x</button>
+        `;
+
+        // Add URL box to the container and clear input
+        urlsContainer.insertBefore(urlBox, urlsInput);
+        urlsInput.value = '';
+    }
+}
+
+// Remove URL box
+function removeUrl(button) {
+    const urlBox = button.parentElement;
+    urlsContainer.removeChild(urlBox);
+}
+
+     </script>
+</body>
+</html>

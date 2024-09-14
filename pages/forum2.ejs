@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DesiGigs - Connect with Top Freelancers in India</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#6c5ce7',
+                        secondary: '#a29bfe',
+                    },
+                },
+            },
+        }
+    </script>
+
+    <!-- Google Translate Integration -->
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',  // Default language set to English
+                includedLanguages: 'hi,bn,te,mr,ta,gu,kn,or,ml,pa',  // Restrict to top 10 Indian languages
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE, 
+                autoDisplay: false  // Prevents auto language detection
+            }, 'google_translate_element');
+        }
+
+
+
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <script>
+        window.embeddedChatbotConfig = {
+        chatbotId: "QadB87Us4epjyKsvLUcv1",
+        domain: "www.chatbase.co"
+        }
+        </script>
+        <script
+        src="https://www.chatbase.co/embed.min.js"
+        chatbotId="QadB87Us4epjyKsvLUcv1"
+        domain="www.chatbase.co"
+        defer>
+        </script>
+
+    <header class="sticky top-0 z-50 w-full border-b bg-gray-900 text-white">
+        <div class="container mx-auto px-4 h-14 flex items-center justify-between">
+            <a href="/" class="flex items-center justify-center">
+                <i data-lucide="cpu" class="h-6 w-6 mr-2 text-primary"></i>
+                <span class="text-xl font-bold text-white">DesiGigs Forums</span>
+            </a>
+    
+            <!-- Hamburger menu for mobile -->
+            <button id="mobile-menu-button" class="lg:hidden text-white focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+    
+            <!-- Desktop navigation -->
+            <nav class="hidden lg:flex gap-4 sm:gap-6 items-center">
+            <a href="/home" class="block px-4 py-2 text-sm hover:bg-gray-700">Home</a>
+            <a href="/faq" class="block px-4 py-2 text-sm hover:bg-gray-700">FAQs</a>
+            <a href="/contact" class="block px-4 py-2 text-sm hover:bg-gray-700">Contact Us</a>
+            <a href="/forum" class="block px-4 py-2 text-sm hover:bg-gray-700">Forum</a></nav>
+    
+            <!-- Translate button (Rightmost, desktop only) -->
+            <div class="relative hidden lg:block">
+                <button class="flex items-center text-sm font-medium text-white hover:text-primary focus:outline-none"
+                    onclick="toggleTranslateDropdown()">
+                    <i class="fas fa-globe globe-icon text-lg mr-2"></i>
+                    <span>Translate Page</span>
+                    <svg class="w-4 h-4 ml-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
+    
+                <!-- Dropdown for language selection -->
+                <div id="google_translate_element"
+                    class="absolute right-0 mt-2 w-40 bg-white text-black rounded-lg shadow-lg hidden p-2">
+                </div>
+            </div>
+        </div>
+    
+        <!-- Mobile navigation -->
+        <nav id="mobile-menu" class="lg:hidden hidden bg-gray-800 py-4">
+            <a href="/home" class="block px-4 py-2 text-sm hover:bg-gray-700">Home</a>
+            <a href="/faq" class="block px-4 py-2 text-sm hover:bg-gray-700">FAQs</a>
+            <a href="/contact" class="block px-4 py-2 text-sm hover:bg-gray-700">Contact Us</a>
+            <a href="/forum" class="block px-4 py-2 text-sm hover:bg-gray-700">Forum</a>
+        </nav>
+    </header>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        border: "hsl(var(--border))",
+                        input: "hsl(var(--input))",
+                        ring: "hsl(var(--ring))",
+                        background: "hsl(var(--background))",
+                        foreground: "hsl(var(--foreground))",
+                        primary: {
+                            DEFAULT: "hsl(var(--primary))",
+                            foreground: "hsl(var(--primary-foreground))",
+                        },
+                        secondary: {
+                            DEFAULT: "hsl(var(--secondary))",
+                            foreground: "hsl(var(--secondary-foreground))",
+                        },
+                        destructive: {
+                            DEFAULT: "hsl(var(--destructive))",
+                            foreground: "hsl(var(--destructive-foreground))",
+                        },
+                        muted: {
+                            DEFAULT: "hsl(var(--muted))",
+                            foreground: "hsl(var(--muted-foreground))",
+                        },
+                        accent: {
+                            DEFAULT: "hsl(var(--accent))",
+                            foreground: "hsl(var(--accent-foreground))",
+                        },
+                        popover: {
+                            DEFAULT: "hsl(var(--popover))",
+                            foreground: "hsl(var(--popover-foreground))",
+                        },
+                        card: {
+                            DEFAULT: "hsl(var(--card))",
+                            foreground: "hsl(var(--card-foreground))",
+                        },
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        :root {
+            --background: 0 0% 100%;
+            --foreground: 222.2 47.4% 11.2%;
+            --muted: 210 40% 96.1%;
+            --muted-foreground: 215.4 16.3% 46.9%;
+            --popover: 0 0% 100%;
+            --popover-foreground: 222.2 47.4% 11.2%;
+            --border: 214.3 31.8% 91.4%;
+            --input: 214.3 31.8% 91.4%;
+            --card: 0 0% 100%;
+            --card-foreground: 222.2 47.4% 11.2%;
+            --primary: 222.2 47.4% 11.2%;
+            --primary-foreground: 210 40% 98%;
+            --secondary: 210 40% 96.1%;
+            --secondary-foreground: 222.2 47.4% 11.2%;
+            --accent: 210 40% 96.1%;
+            --accent-foreground: 222.2 47.4% 11.2%;
+            --destructive: 0 100% 50%;
+            --destructive-foreground: 210 40% 98%;
+            --ring: 215 20.2% 65.1%;
+            --radius: 0.5rem;
+        }
+    </style>
+</head>
+<body class="bg-background text-foreground">
+
+    <main class="container mx-auto mt-8 px-4 flex">
+        <aside class="w-1/4 pr-8">
+            <div class="bg-card text-card-foreground rounded-lg shadow-md p-6 sticky top-4">
+                <h2 class="text-xl font-semibold mb-4">Categories</h2>
+                <ul id="category-list" class="space-y-2">
+                    <li>
+                        <a href="#" class="text-primary hover:text-primary/80 transition duration-300 category-link" data-category="all">All Categories</a>
+                    </li>
+                    <!-- Other categories will be populated here -->
+                </ul>
+            </div>
+        </aside>
+        <section class="w-3/4">
+            <div class="bg-card text-card-foreground rounded-lg shadow-md p-6 mb-8">
+                <h2 class="text-xl font-semibold mb-4">Share Your Insight</h2>
+                <form id="post-form" class="space-y-4">
+                    <textarea id="post-content" class="w-full p-3 border rounded-lg focus:ring focus:ring-primary/50 transition duration-300" rows="4" placeholder="What's on your mind?"></textarea>
+                    <div class="flex justify-between items-center">
+                        <select id="post-category" class="p-2 border rounded-lg focus:ring focus:ring-primary/50 transition duration-300">
+                            <!-- Categories will be populated here -->
+                        </select>
+                        <button type="submit" class="bg-primary text-primary-foreground px-6 py-2 rounded-lg hover:bg-primary/90 transition duration-300">Post</button>
+                    </div>
+                </form>
+            </div>
+            <div id="posts-container">
+                <!-- Posts will be populated here -->
+            </div>
+        </section>
+    </main>
+
+    <footer class="w-full py-6 bg-gray-900 text-white">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="font-semibold mb-2">About</h3>
+                    <ul class="space-y-1">
+                        <li><a href="/aboutus" class="hover:text-secondary">About Us</a></li>
+                        <li><a href="/team" class="hover:text-secondary">Our Team</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-semibold mb-2">Support</h3>
+                    <ul class="space-y-1">
+                        <li><a href="/faq" class="hover:text-secondary">FAQs</a></li>
+                        <li><a href="/contact" class="hover:text-secondary">Contact Us</a></li>
+                        <li><a href="/tos" class="hover:text-secondary">Terms of Service</a></li>
+                        <li><a href="/policy" class="hover:text-secondary">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-semibold mb-2">Follow Us</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-white hover:text-secondary">
+                            <i data-lucide="instagram" class="h-6 w-6"></i>
+                            <span class="sr-only">Instagram</span>
+                        </a>
+                        <a href="#" class="text-white hover:text-secondary">
+                            <i data-lucide="twitter" class="h-6 w-6"></i>
+                            <span class="sr-only">Twitter</span>
+                        </a>
+                        <a href="#" class="text-white hover:text-secondary">
+                            <i data-lucide="facebook" class="h-6 w-6"></i>
+                            <span class="sr-only">Facebook</span>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="font-semibold mb-2">Newsletter</h3>
+                    <p class="text-base mb-2">Subscribe to our newsletter for the latest gigs and freelancing tips</p>
+                    <form class="flex" id="newsletterForm">
+                        <input type="email" id="emailInput" placeholder="Enter your email" class="rounded-l-md text-black px-3 py-2 w-full">
+                        <button type="submit" class="rounded-r-md bg-primary hover:bg-[#5649c9] text-white px-4 py-2">Subscribe</button>
+                    </form>
+                    <p id="message" class="text-base mt-2"></p>
+                </div>
+            </div>
+            <div class="mt-8 text-center text-sm">© 2024 DesiGigs. All rights reserved.</div>
+        </div>
+    </footer>
+
+
+    <script>
+        const categories = [
+            "Web Development",
+            "Graphic Design",
+            "Content Writing",
+            "Digital Marketing",
+            "App Development",
+            "Finance and Accounting",
+            "Game Development",
+            "Video and Audio Production"
+        ];
+
+        const posts = [
+            {
+                id: 1,
+                content: "Just finished a responsive web design project using Tailwind CSS. It's amazing how quickly you can build beautiful interfaces!",
+                category: "Web Development",
+                author: "WebDev123",
+                likes: 15,
+                dislikes: 2
+            },
+            {
+                id: 2,
+                content: "Created a stunning logo for a tech startup. The key was to keep it simple yet memorable.",
+                category: "Graphic Design",
+                author: "DesignGuru",
+                likes: 22,
+                dislikes: 1
+            },
+            {
+                id: 3,
+                content: "SEO tip: Focus on creating high-quality, relevant content. Google's algorithms are getting smarter at recognizing value.",
+                category: "Digital Marketing",
+                author: "SEOmaster",
+                likes: 18,
+                dislikes: 3
+            }
+        ];
+
+        let currentCategory = "all";
+
+        function populateCategories() {
+            const categoryList = document.getElementById('category-list');
+            const postCategory = document.getElementById('post-category');
+
+            categories.forEach(category => {
+                categoryList.innerHTML += `
+                    <li>
+                        <a href="#" class="text-muted-foreground hover:text-primary transition duration-300 category-link" data-category="${category}">${category}</a>
+                    </li>
+                `;
+                postCategory.innerHTML += `
+                    <option value="${category}">${category}</option>
+                `;
+            });
+
+            // Add event listeners to category links
+            document.querySelectorAll('.category-link').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    currentCategory = e.target.dataset.category;
+                    populatePosts();
+                    updateActiveCategory();
+                });
+            });
+        }
+
+        function updateActiveCategory() {
+            document.querySelectorAll('.category-link').forEach(link => {
+                if (link.dataset.category === currentCategory) {
+                    link.classList.remove('text-muted-foreground');
+                    link.classList.add('text-primary', 'font-semibold');
+                } else {
+                    link.classList.remove('text-primary', 'font-semibold');
+                    link.classList.add('text-muted-foreground');
+                }
+            });
+        }
+
+        function createPostElement(post) {
+            return `
+                <div class="bg-card text-card-foreground rounded-lg shadow-md p-6 mb-4 transition duration-300 hover:shadow-lg">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h3 class="font-semibold text-lg">${post.author}</h3>
+                            <p class="text-sm text-muted-foreground">${post.category}</p>
+                        </div>
+                        <button class="text-muted-foreground hover:text-foreground transition duration-300">
+                            <i class="fas fa-ellipsis-h"></i>
+                        </button>
+                    </div>
+                    <p class="mb-4">${post.content}</p>
+                    <div class="flex space-x-4">
+                        <button class="text-muted-foreground hover:text-primary transition duration-300 flex items-center like-button" data-post-id="${post.id}">
+                            <i class="far fa-thumbs-up mr-1"></i> <span class="like-count">${post.likes}</span>
+                        </button>
+                        <button class="text-muted-foreground hover:text-destructive transition duration-300 flex items-center dislike-button" data-post-id="${post.id}">
+                            <i class="far fa-thumbs-down mr-1"></i> <span class="dislike-count">${post.dislikes}</span>
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function populatePosts() {
+            const postsContainer = document.getElementById('posts-container');
+            postsContainer.innerHTML = '';
+            const filteredPosts = currentCategory === "all"
+                ? posts
+                : posts.filter(post => post.category === currentCategory);
+            filteredPosts.forEach(post => {
+                postsContainer.innerHTML += createPostElement(post);
+            });
+
+            // Add event listeners for like and dislike buttons
+            document.querySelectorAll('.like-button, .dislike-button').forEach(button => {
+                button.addEventListener('click', handleLikeDislike);
+            });
+        }
+
+        function handleLikeDislike(e) {
+            const postId = parseInt(e.currentTarget.dataset.postId);
+            const isLike = e.currentTarget.classList.contains('like-button');
+            const post = posts.find(p => p.id === postId);
+
+            if (isLike) {
+                post.likes++;
+            } else {
+                post.dislikes++;
+            }
+
+            // Update the UI
+            const countElement = e.currentTarget.querySelector(isLike ? '.like-count' : '.dislike-count');
+            countElement.textContent = isLike ? post.likes : post.dislikes;
+        }
+
+        document.getElementById('post-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const content = document.getElementById('post-content').value;
+            const category = document.getElementById('post-category').value;
+            if (content.trim() !== '') {
+                const newPost = {
+                    id: posts.length + 1,
+                    content: content,
+                    category: category,
+                    author: "CurrentUser",
+                    likes: 0,
+                    dislikes: 0
+                };
+                posts.unshift(newPost);
+                populatePosts();
+                document.getElementById('post-content').value = '';
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            populateCategories();
+            populatePosts();
+            updateActiveCategory();
+        });
+    </script>
+</body>
+</html>

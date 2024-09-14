@@ -1,0 +1,51 @@
+<% layout("../layouts/boilerplate") %>
+
+
+  <style>
+    /* Basic styling */
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .job-listing {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 10px;
+      margin-bottom: 10px;
+      background: #f9f9f9;
+    }
+    .job-listing img {
+      max-width: 100px;
+      border-radius: 4px;
+    }
+  </style>
+
+  <h1>Job Listings</h1>
+  <div class="row row-cols-1 row-cols-md-4 g-4">
+    
+  <% if (jobs && jobs.length > 0) { %>
+    <% jobs.forEach(job => { %>
+      
+
+        <div class="col">
+      
+          <div class="card">
+            <img src="<%= job.hiringOrganizationLogo %>" class="card-img-top" alt=""<%= job.hiringOrganizationName %> Logo"">
+            <div class="card-body">
+              <h5 class="card-title">Title: <%= job.title %></h5>
+              <p><strong>Company:</strong> <%= job.hiringOrganizationName %></p>
+              <p><strong>Location:</strong> <%= job.city %></p>
+              <p class="card-text">Published Since:</strong> <%= new Date(job.published_since).toDateString() %></p>
+            </div>
+          </div>
+        </div>
+    <% }) %>
+  <% } else { %>
+    <p>No jobs found.</p>
+  <% } %>
+ 
+  </div>
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+

@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <!-- <link rel="stylesheet" href="login.css"> -->
+     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;   
+}
+body{
+ 
+    background: linear-gradient(135deg,#202e5c, #c9d6ff);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.container{
+    background-color: #fff;
+    border-radius: 40px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+    position: relative;
+    overflow: hidden;
+    width: 900px;
+    max-width: 100%;
+    min-height: 600px;
+}
+
+.container p{
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.4px;
+    margin: 25px 0;
+}
+
+.container span{
+    font-size: 14px;
+}
+
+.container a{
+    color: #333;
+    font-size: 15px;
+    text-decoration: none;
+    margin: 20px 0 15px;
+}
+
+.container button{
+    background-color: rgb(162 155 254);
+    color: #fff;
+    font-size: 14px;
+    padding: 12px 55px;
+    border: 1px solid transparent;
+    border-radius: 12px;
+    font-weight: 600;
+    letter-spacing: .7px;
+    text-transform: uppercase;
+    margin-top: 15px;
+    cursor: pointer;
+    transition: transform ease-in 0.2s;
+}
+.container button:hover{
+    transform: translateY(-4px);
+}
+.container button.hidden{
+    background-color: transparent;
+    border-color: #fff;   
+}
+
+.container form{
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 50px;
+    height: 100%;
+}
+
+.container input{
+    background-color: rgba(128, 128, 128, 0.219);
+    border: none;
+    margin: 10px 0;
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 10px;
+    width: 100%;
+    outline: none;
+}
+
+.container input:hover{
+    box-shadow: 0 8px 20px 3px gray;
+}
+
+.password-container {
+    position: relative;
+    width: 100%;
+}
+
+.password-container .toggle-password {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #888;
+}
+
+.password-container .toggle-password:hover {
+    color: #333;
+}
+
+.form-container{
+    position: absolute;
+    top: 0;
+    height: 100%;
+    transition: all 0.5s ease-in-out;
+}
+
+.sign-in{
+    left:0;
+    width: 50%;
+    z-index: 2;
+}
+
+.container.active .sign-in{
+    transform: translateX(100%);
+}
+
+#forgotPass:hover{
+    color: rgb(162 155 254);
+}
+
+.sign-up{
+    left: 0;
+    width: 50%;
+    opacity: 0;
+    z-index: 1;
+}
+
+.container.active .sign-up{
+    transform: translateX(100%);
+    opacity: 1;
+    z-index: 5;
+    animation: move 0.6s;
+}
+
+@keyframes move{
+    0%, 49%{
+        opacity: 0;
+        z-index: 1;
+    }
+    50%, 100%{
+        opacity: 1;
+        z-index: 5;
+    }
+}
+
+.social-icons{
+    margin: 25px 0;
+}
+
+.social-icons a{
+    border: 1px solid #ccc;
+    border-radius: 20%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;  
+    margin: 0 5px;
+    width: 50px;
+    height: 50px;
+    
+}
+
+.social-icons a:hover{   
+    transform: translateY(-5px); 
+    transition: 0.2s ease-in;
+}
+
+.toggle-container{
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    transition: all 0.6s ease-in-out;
+    border-radius: 180px 0 0 130px;
+    z-index: 1000;
+}
+
+.container.active .toggle-container{
+    transform: translateX(-100%);
+    border-radius:  0 180px 130px 0 ;
+}
+
+.toggle{
+    background-color: #2f4550;
+    height: 100%;
+    background: linear-gradient(135deg, rgb(123, 115, 226),  rgb(20, 18, 51));
+    color: #fff;
+    position: relative;
+    left: -100%;
+    width: 200%;
+    transform: translateX(0);
+    transition: all 0.6s ease-in-out;
+}
+
+.container.active .toggle{
+    transform: translateX(50%);
+}
+
+.toggle-panel{
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 35px;
+    text-align: center;
+    top: 0;
+    transform: translateX(0);
+    transition: all 0.6s ease-in-out;
+}
+
+.toggle-left{
+    transform: translateX(-200%);
+}
+
+.container.active .toggle-left{
+ transform: translateX(0);
+}
+
+.toggle-right{
+    right: 0;
+    transform: translateX(0);
+}
+
+.container.active .toggle-right{
+    transform: translateX(200%);
+}
+.Heading{
+
+    margin-bottom: 20px;
+    font-size: 3em;
+    padding: 10px;
+    border-radius: 20px;
+    
+    color: white;
+}
+.Client_container{
+    display: none;
+}
+.Client_Heading{
+    display: none;
+}
+.switch_role{
+    margin-top: 2em;
+    padding: 10px;
+    font-size: 1em;
+    border-radius: 15px;
+    border: none;
+    
+    transition: all 0.4s ease;
+    cursor: pointer;
+    background-color: rgb(162 155 254);
+}
+.switch_role:hover{
+    transform: translateY(-4px);
+    box-shadow: 0 0 15px gray;
+}
+     </style>
+</head>
+
+<body>
+    <h1 class="Freelancer_Heading Heading">Freelancer Login</h1>
+    <div class="Freelancer_container container" id="container">
+        <div class="form-container sign-up">
+            <form>
+                <h1>Create Account</h1>
+                <div class="social-icons">
+                    <a href="#" class="icon">
+                        <i class="fa-brands fa-google-plus-g"></i>
+                    </a>
+                    <a href="#" class="icon">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="icon">
+                        <i class="fa-brands fa-github"></i>
+                    </a>
+                    <a href="#" class="icon">
+                        <i class="fa-brands fa-linkedin-in"></i>
+                    </a>
+                </div>
+
+                <button><a href="/freelancerRegi">Get Started</a></button>
+            </form>
+        </div>
+        <div class="form-container sign-in">
+            <form id="freelancerSignIn">
+                <h1>Sign in</h1>
+                <div class="social-icons">
+                    <a href="#" class="icon">
+                        <i class="fa-brands fa-google-plus-g"></i>
+                    </a>
+                    <a href="#" class="icon">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="icon">
+                        <i class="fa-brands fa-github"></i>
+                    </a>
+                    <a href="#" class="icon">
+                        <i class="fa-brands fa-linkedin-in"></i>
+                    </a>
+                </div>
+                <span>Or use your email password</span>
+                <input type="email" name="Email" placeholder="Email" required>
+
+                <div class="password-container">
+                    <input type="password" name="Password" placeholder="Password" required>
+                    <i class="fa fa-eye-slash toggle-password"></i>
+                </div>
+
+                <a href="#" id="forgotPass">Forget your password?</a>
+                <a href="#"><button id="signInButton" class="signInButton">Sign In</button></a>
+            </form>
+        </div>
+        <div class="toggle-container">
+            <div class="toggle">
+                <div class="toggle-panel toggle-left">
+                    <h1>Welcome Back!</h1>
+                    <p>Enter your account details to continue</p>
+                    <button class="hidden" id="login">Sign In</button>
+                </div>
+                <div class="toggle-panel toggle-right">
+                    <h1>Hello There!</h1>
+                    <p>Register with your personal details to continue</p>
+                    <button class="hidden" id="register">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h1 class="Client_Heading Heading">Client Login</h1>
+    <div class="Client_container container" id="container">
+        <div class="form-container sign-up">
+            <form>
+                <h1>Create Account</h1>
+                <div class="social-icons">
+                    <a href="#" class="icon">
+                        <i class="fa-brands fa-google-plus-g"></i>
+                    </a>
+                    <a href="#" class="icon">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="icon">
+                        <i class="fa-brands fa-github"></i>
+                    </a>
+                    <a href="#" class="icon">
+                        <i class="fa-brands fa-linkedin-in"></i>
+                    </a>
+                </div>
+
+                <button><a href="/clientRegi">Get Started</a></button>
+            </form>
+        </div>
+        <div class="form-container sign-in">
+            <form id="clientSignIn" action="/clientsignin" method="post">
+                <h1>Sign in</h1>
+                <div class="social-icons">
+                    <a href="#" class="icon">
+                        <i class="fa-brands fa-google-plus-g"></i>
+                    </a>
+                    <a href="#" class="icon">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="icon">
+                        <i class="fa-brands fa-github"></i>
+                    </a>
+                    <a href="#" class="icon">
+                        <i class="fa-brands fa-linkedin-in"></i>
+                    </a>
+                </div>
+                <span>Or use your email password</span>
+                <input type="email" placeholder="Email" name="Manager[email]" id="useremail" required>
+
+                <div class="password-container">
+                    <input type="password" name="Password" placeholder="Password" required>
+                    <i class="fa fa-eye-slash toggle-password"></i>
+                </div>
+
+                <a href="#" id="forgotPass">Forget your password?</a>
+                <button id="signInButton" class="signInButton">Sign In</button>
+            </form>
+        </div>
+        <div class="toggle-container">
+            <div class="toggle">
+                <div class="toggle-panel toggle-left">
+                    <h1>Welcome Back!</h1>
+                    <p>Enter your account details to continue</p>
+                    <button class="hidden" id="login">Sign In</button>
+                </div>
+                <div class="toggle-panel toggle-right">
+                    <h1>Hello There!</h1>
+                    <p>Register with your personal details to continue</p>
+                    <button style="border: 1px solid black; background-color: transparent;"><a href="/clientRegi">Sign Up</a></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <button id="switch" class="switch_role">Switch To Client Login</button>
+    </div>
+</body>
+<!-- <script src="login.js"></script> -->
+ <script>
+    document.addEventListener('DOMContentLoaded', function () {
+    const switch_role = document.getElementById('switch');
+    const Client = document.querySelector('.Client_container');
+    const Client_heading = document.querySelector('.Client_Heading');
+    const Freelancer_container = document.querySelector('.Freelancer_container');
+    const Freelancer_Heading = document.querySelector('.Freelancer_Heading');
+    const body = document.querySelector('body'); // Get the body element
+    
+    const container = document.getElementById('container');
+    
+    // Toggle between Freelancer and Client containers
+    switch_role.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        if (Freelancer_container.style.display === 'none') {
+            Freelancer_container.style.display = 'block';
+            Freelancer_Heading.style.display = 'block';
+            Client.style.display = 'none';
+            Client_heading.style.display = 'none';
+            switch_role.textContent = "Switch To Client Login";
+            
+            // Change background for Freelancer
+            body.style.background = 'linear-gradient(135deg, #c9d6ff, #202e5c)';
+        } else {
+            Freelancer_container.style.display = 'none';
+            Freelancer_Heading.style.display = 'none';
+            Client.style.display = 'block';
+            Client_heading.style.display = 'block';
+            switch_role.textContent = "Switch To Freelancer Login";
+            
+            // Change background for Client
+            body.style.background = 'linear-gradient(135deg, #202e5c, #c9d6ff)';
+        }
+        
+        // Reapply event listeners after toggling
+        reapplyEventListeners();
+    });
+
+    function reapplyEventListeners() {
+        const registerButton = document.getElementById('registerButton');
+        const signInButton = document.getElementById('signInButton');
+        const registerForm = document.querySelector('.form-container.sign-up form');
+        const signInForm = document.querySelector('.form-container.sign-in form');
+
+        // Toggle between sign up and sign in forms
+        const registerbtn = document.getElementById('register');
+        const loginbtn = document.getElementById('login');
+
+        if (registerbtn && loginbtn) {
+            registerbtn.addEventListener('click', () => {
+                container.classList.add("active");
+            });
+
+            loginbtn.addEventListener('click', () => {
+                container.classList.remove("active");
+            });
+        }
+
+        if (registerButton) {
+            registerButton.addEventListener('click', function (event) {
+                handleFormSubmit(event, registerForm);
+            });
+        }
+
+        if (signInButton) {
+            signInButton.addEventListener('click', function (event) {
+                handleFormSubmit(event, signInForm);
+            });
+        }
+
+        // Toggle password visibility
+        document.querySelectorAll('.toggle-password').forEach(item => {
+            item.addEventListener('click', function () {
+                const passwordField = this.previousElementSibling;
+
+                if (passwordField.type === "password") {
+                    passwordField.type = "text";
+                    this.classList.remove("fa-eye-slash");
+                    this.classList.add("fa-eye");
+                } else {
+                    passwordField.type = "password";
+                    this.classList.remove("fa-eye");
+                    this.classList.add("fa-eye-slash");
+                }
+            });
+        });
+    }
+
+    // Initial event listeners setup
+    reapplyEventListeners();
+});
+
+ </script>
+
+
+</html>

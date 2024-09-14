@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DesiGigs - Connect with Top Freelancers in India</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#6c5ce7',
+                        secondary: '#a29bfe',
+                    },
+                },
+            },
+        }
+    </script>
+
+    <!-- Google Translate Integration -->
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',  // Default language set to English
+                includedLanguages: 'hi,bn,te,mr,ta,gu,kn,or,ml,pa',  // Restrict to top 10 Indian languages
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE, 
+                autoDisplay: false  // Prevents auto language detection
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen"></body>
+
+    <header class="sticky top-0 z-50 w-full border-b bg-gray-900 text-white">
+        <div class="container mx-auto px-4 h-14 flex items-center justify-between">
+            <a href="/" class="flex items-center justify-center">
+                <i data-lucide="cpu" class="h-6 w-6 mr-2 text-primary"></i>
+                <span class="text-xl font-bold text-white">DesiGigs</span>
+            </a>
+    
+            <!-- Hamburger menu for mobile -->
+            <button id="mobile-menu-button" class="lg:hidden text-white focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+    
+            <!-- Desktop navigation -->
+            <nav class="hidden lg:flex gap-4 sm:gap-6 items-center">
+                <a href="/home" class="block px-4 py-2 text-sm hover:bg-gray-700">Home</a>
+            <a href="/home#works" class="block px-4 py-2 text-sm hover:bg-gray-700">How It Works</a>
+            <a href="/faq" class="block px-4 py-2 text-sm hover:bg-gray-700">FAQs</a>
+            <a href="/contact" class="block px-4 py-2 text-sm hover:bg-gray-700">Contact Us</a>
+            <a href="/auth" class="block px-4 py-2 text-sm hover:bg-gray-700">Sign Up</a></nav>
+    
+            <!-- Translate button (Rightmost, desktop only) -->
+            <div class="relative hidden lg:block">
+                <button class="flex items-center text-sm font-medium text-white hover:text-primary focus:outline-none"
+                    onclick="toggleTranslateDropdown()">
+                    <i class="fas fa-globe globe-icon text-lg mr-2"></i>
+                    <span>Translate Page</span>
+                    <svg class="w-4 h-4 ml-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
+    
+                <!-- Dropdown for language selection -->
+                <div id="google_translate_element"
+                    class="absolute right-0 mt-2 w-40 bg-white text-black rounded-lg shadow-lg hidden p-2">
+                </div>
+            </div>
+        </div>
+    
+        <!-- Mobile navigation -->
+        <nav id="mobile-menu" class="lg:hidden hidden bg-gray-800 py-4">
+            <a href="/home" class="block px-4 py-2 text-sm hover:bg-gray-700">Home</a>
+            <a href="/home#works" class="block px-4 py-2 text-sm hover:bg-gray-700">How It Works</a>
+            <a href="/faq" class="block px-4 py-2 text-sm hover:bg-gray-700">FAQs</a>
+            <a href="/contact" class="block px-4 py-2 text-sm hover:bg-gray-700">Contact Us</a>
+            <a href="/auth" class="block px-4 py-2 text-sm hover:bg-gray-700">Sign Up</a>
+        </nav>
+    </header>
+
+
+<main class="flex-1 bg-gray-100">
+    <div class="container mx-auto px-4 py-12">
+        <section class="w-full py-6 md:py-12 bg-gradient-to-r from-secondary to-primary">
+            <div class="container mx-auto px-4">
+                <h1 class="text-6xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-white mb-6 text-center">CONTACT US</h1>
+            </div>
+        </section>
+        <br>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="bg-white p-8 rounded-lg shadow-md">
+                <h2 class="text-4xl font-semibold mb-4">Get in Touch</h2>
+                <p class="text-lg text-gray-700 mb-6">Have a question or need assistance? We're here to help! Reach out to us, and we'll get back to you as soon as possible.</p>
+                <div class="space-y-4">
+                    <div class="flex items-center">
+                        <i data-lucide="map-pin" class="h-6 w-6 text-primary mr-2"></i>
+                        <span class="text-gray-700">Mumbai, India</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i data-lucide="mail" class="h-6 w-6 text-primary mr-2"></i>
+                        <a href="mailto:GigsHive@business.com" class="text-gray-700 hover:text-primary">GigsHive@business.com</a>
+                    </div>
+                    <div class="flex items-center">
+                        <i data-lucide="phone" class="h-6 w-6 text-primary mr-2"></i>
+                        <span class="text-gray-700">+91 XXXXX XXXXX</span>
+                    </div>
+                </div>
+                <h3 class="text-xl font-semibold mt-8 mb-4">Follow Us</h3>
+                <div class="flex space-x-4">
+                    <a href="#" class="text-gray-700 hover:text-primary">
+                        <i data-lucide="facebook" class="h-6 w-6"></i>
+                    </a>
+                    <a href="#" class="text-gray-700 hover:text-primary">
+                        <i data-lucide="instagram" class="h-6 w-6"></i>
+                    </a>
+                    <a href="#" class="text-gray-700 hover:text-primary">
+                        <i data-lucide="twitter" class="h-6 w-6"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="bg-white p-8 rounded-lg shadow-md">
+                <h2 class="text-4xl font-semibold mb-4">Send Us a Message</h2>
+                <form class="space-y-4">
+                    <div>
+                        <label for="name" class="block text-lg font-medium text-gray-700">Name</label>
+                        <input type="text" id="name" name="name" required class="p-2 mt-1 h-7 block w-full bg-gray-200 rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50">
+                    </div>
+                    <div>
+                        <label for="email" class="block text-lg font-medium text-gray-700">Email</label>
+                        <input type="email" id="email" name="email" required class="p-2 mt-1 h-7 block w-full bg-gray-200 rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50">
+                    </div>
+                    <div>
+                        <label for="phone" class="block text-lg font-medium text-gray-700">Phone</label>
+                        <input type="tel" id="phone" name="phone" required class="p-2 mt-1 h-7 block w-full bg-gray-200 rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50">
+                    </div>
+                    <div>
+                        <label for="message" class="block text-lg font-medium text-gray-700">Message</label>
+                        <textarea id="message" name="message" rows="4" required class="p-2 mt-1 block w-full bg-gray-200 rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50"></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-primary text-white py-2 px-4 rounded-md hover:bg-[#5649c9] transition duration-300">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="w-full py-6 bg-gray-900 text-white">
+    <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div>
+                <h3 class="font-semibold mb-2">About</h3>
+                <ul class="space-y-1">
+                    <li><a href="/aboutus" class="hover:text-secondary">About Us</a></li>
+                    <li><a href="/team" class="hover:text-secondary">Our Team</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="font-semibold mb-2">Support</h3>
+                <ul class="space-y-1">
+                    <li><a href="/faq" class="hover:text-secondary">FAQs</a></li>
+                    <li><a href="/contact" class="hover:text-secondary">Contact Us</a></li>
+                    <li><a href="/tos" class="hover:text-secondary">Terms of Service</a></li>
+                    <li><a href="/policy" class="hover:text-secondary">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="font-semibold mb-2">Follow Us</h3>
+                <div class="flex space-x-4">
+                    <a href="#" class="text-white hover:text-secondary">
+                        <i data-lucide="instagram" class="h-6 w-6"></i>
+                        <span class="sr-only">Instagram</span>
+                    </a>
+                    <a href="#" class="text-white hover:text-secondary">
+                        <i data-lucide="twitter" class="h-6 w-6"></i>
+                        <span class="sr-only">Twitter</span>
+                    </a>
+                    <a href="#" class="text-white hover:text-secondary">
+                        <i data-lucide="facebook" class="h-6 w-6"></i>
+                        <span class="sr-only">Facebook</span>
+                    </a>
+                </div>
+            </div>
+            <div>
+                <h3 class="font-semibold mb-2">Newsletter</h3>
+                <p class="text-base mb-2">Subscribe to our newsletter for the latest gigs and freelancing tips</p>
+                <form class="flex" id="newsletterForm">
+                    <input type="email" id="emailInput" placeholder="Enter your email" class="rounded-l-md text-black px-3 py-2 w-full">
+                    <button type="submit" class="rounded-r-md bg-primary hover:bg-[#5649c9] text-white px-4 py-2">Subscribe</button>
+                </form>
+                <p id="message" class="text-base mt-2"></p>
+            </div>
+        </div>
+        <div class="mt-8 text-center text-sm">© 2024 DesiGigs. All rights reserved.</div>
+    </div>
+</footer>
+
+
+<script>
+    // code for newsletter bakchodi 
+    document.getElementById('newsletterForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent the form from submitting
+        
+        const emailInput = document.getElementById('emailInput').value;
+        const message = document.getElementById('message');
+        
+        if (emailInput.includes('@')) {
+            message.textContent = "Thank you for subscribing to our newsletter!";
+            message.style.color = 'white'; // Optional: set the message color to green for success
+        } else {
+            message.textContent = "Error: '@' is missing in the email address.";
+            message.style.color = 'red'; // Optional: set the message color to red for error
+        }
+    });
+
+
+    function toggleTranslateDropdown() {
+      var dropdown = document.getElementById('google_translate_element');
+      dropdown.classList.toggle('show-translate');
+    }
+  </script>
+
+<script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+    }
+  </script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+<script>
+    // display lucide icons
+    lucide.createIcons();
+    //HamBurger for Phones
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    mobileMenuButton.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+    });
+    //Hamburger ENDS HERE
+
+    //Google Translate Dropdown
+    function toggleTranslateDropdown() {
+        var dropdown = document.getElementById('google_translate_element');
+        dropdown.classList.toggle('hidden');
+    }
+    //Google Translate ENDS HERE
+
+</script>
+
+<script>
+    window.embeddedChatbotConfig = {
+    chatbotId: "QadB87Us4epjyKsvLUcv1",
+    domain: "www.chatbase.co"
+    }
+    </script>
+    <script
+    src="https://www.chatbase.co/embed.min.js"
+    chatbotId="QadB87Us4epjyKsvLUcv1"
+    domain="www.chatbase.co"
+    defer>
+    </script>
+</body>
+</html>
